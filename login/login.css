@@ -1,0 +1,86 @@
+@charset "UTF-8";
+
+/*
+Reference:
+http://www.bootstrapzen.com/item/135/simple-login-form-logo/
+*/
+* {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	outline: none;
+}
+#login_logo{
+	
+	font-color: #04a190;
+}
+.form-control {
+	position: relative;
+	font-size: 16px;
+	height: auto;
+	padding: 10px;
+	@include box-sizing(border-box);
+	&:focus {
+		z-index: 2;
+	}
+}
+body {
+	/*background-color: #FFFFFF;*/
+	background: url(../img/fondo_new.jpg) no-repeat center center fixed; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+
+}
+#login_logo {
+	background-color: #FFFFFF;
+	padding: 10px 10px 10px 10px;
+}
+.login-form {
+	margin-top: 30px;
+}
+form[role=login] {
+	color: #5D5D5D;
+	background: #F2F2F2;
+	padding: 26px;
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+}
+form[role=login] img {
+	display: block;
+	margin: 0 auto;
+	margin-bottom:20px;
+}
+
+form[role=login] input,
+form[role=login] button {
+	font-size: 18px;
+	margin: 16px 0;
+}
+form[role=login] > div {
+	text-align: center;
+}
+.form-links {
+	text-align: center;
+	margin-top: 1em;
+	margin-bottom: 50px;
+}
+.form-links a {
+	color: #FFF;
+}
+@media (min-width: 767px) {
+	
+}
+@media (max-width: 767px) {
+	body {
+		background:  #fff;
+	}
+	
+	form[role=login] {
+		padding: 22px 26px 26px;
+		-webkit-border-radius: 10px;
+		margin-top: -56px;
+	}
+}
