@@ -6,6 +6,7 @@ $(document).ready(function () {
 
     function listaProductos() {
         let tableTemplate;
+        let bgClass;
         let $boton = $("#form_filtros").find(":submit");
         let $icono = $boton.find(".fa");
         $boton.prop("disabled", true)
@@ -16,14 +17,16 @@ $(document).ready(function () {
             data: $("#form_filtros").serializeArray()
         }).done(function (respuesta) {
             $.each(respuesta, function (index, value) {
+                if (value.existencia_productos < value.min_productos) bgClass = "bg-danger";
+                else bgClass = " ";
                 tableTemplate += `
-                <tr class="bg-danger">
+                <tr class="${bgClass}">
                 <td class="text-center">${value.descripcion_productos}</td>
                 <td class="text-center">${value.nombre_departamentos} </td>
                 <td class="text-center">${value.costo_proveedor} </td>
                 <td class="text-center">${value.ganancia_menudeo_porc} </td>
                 <td class="text-center">${value.precio_menudeo} </td>
-                <td class="text-center">${value.precio_mayoreo} </td>
+                <td class="text-center">${value.precio_mayoreo} </td>                
                 <td class="text-center">${value.min_productos} </td>
                 <td class="text-center">${value.existencia_productos} </td>                
                 <td class="text-center">
@@ -38,7 +41,6 @@ $(document).ready(function () {
                 </button>
                     </td>
                 </tr>  
-                
         `;
 
             });
