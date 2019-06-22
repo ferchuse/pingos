@@ -1,0 +1,171 @@
+@media print {
+	.page-break {display: block;
+	 
+		page-break-after: always;
+	}
+	.no_imprimir {
+		display: none;
+	}
+	.no_mostrar {
+		display: block;
+	}
+	.ticket {
+		font-size: 10px !important;
+		max-width : 8cm;
+	}
+	a[href]:after {
+		content:none;
+	}
+	a[href] {
+		content:none;
+	}
+	
+	.fondo_gris{
+		color: white !important;
+		background-color: #C0C0C0 !important;
+		
+	}
+}
+
+label.list-group-item {
+	color: #555;
+	cursor: pointer ;
+}
+
+label.list-group-item:hover {
+	background-color: lightgray;
+}
+
+
+.cancelado{
+	
+	text-decoration: line-through;
+
+}
+ 
+
+.ui-autocomplete {
+    z-index: 5000;
+}
+
+.page-break {display: block;
+	 display: block;
+		page-break-after: always;
+	}
+input[type=text]{
+	
+	text-transform: uppercase;
+}
+
+.fondo_gris{
+		color: white !important;
+		background-color: #C0C0C0 !important;
+		
+	}
+.rotate45 {
+	opacity: 0.5;
+/* Safari */
+-webkit-transform: rotate(-45deg);
+
+/* Firefox */
+-moz-transform: rotate(-45deg);
+
+/* IE */
+-ms-transform: rotate(-45deg);
+
+/* Opera */
+-o-transform: rotate(-45deg);
+
+/* Internet Explorer */
+filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+
+}
+.navbar-search {
+    max-width: 180px;
+  }
+
+
+th{
+	text-align: center;
+	
+}
+#page-wrapper{
+	min-height:600px !important;
+	
+}
+.modal{
+	color: black;
+}
+#page-wrapper_nomenu {
+	min-height: 700px;
+	color: white;
+}
+.Cancelada {
+	background: #F4BAC0;
+}
+
+.no_mostrar {
+	display: none;
+}
+
+.badge-danger {
+  background-color: #d43f3a;
+}
+
+.badge-warning {
+background-color: #d58512;
+}
+
+.badge-success {
+background-color: #5cb85c !important;
+color : white  !important;
+}
+
+.badge-info {
+background-color: #269abc;
+}
+
+.badge-inverse {
+background-color: #333333;
+}
+
+
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+
+
+.ui-autocomplete-loading {
+	background: url('../img/ajax-loader.gif') no-repeat right center;
+}
+.cargando {
+	background: url('../img/ajax-loader.gif') no-repeat right center;
+}
+
+.vcenter {
+	display: inline-block;
+	vertical-align: middle;
+	float: none;
+}
+
+.table-center td {
+	text-align: center;
+}
+
+.ui-datepicker {
+	width: 15.2em;
+	padding: 0.2em 0.2em 0;
+	display: none;
+}
+
+select.ui-datepicker-month {
+	color: #000000;
+	z-index: 120000;
+}
+
+.ui-datepicker-year {
+	color: #000000;
+	z-index: 999999;
+}
