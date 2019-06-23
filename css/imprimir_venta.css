@@ -1,0 +1,87 @@
+
+
+.ticket {
+	width: 8cm;
+	/* border: 1px solid grey; */ 
+	font-family:calibri, sans-serif, arial;
+}
+
+.line {
+	line-height: 10px;
+}
+
+.font-11 {
+	font-size: 11px;
+}
+
+.font-11-5 {
+	font-size: 11.5px;
+}
+
+.font-12 {
+	font-size: 12px;
+}
+
+.font-12-5 {
+	font-size: 12.5px;
+}
+
+.font-13 {
+	font-size: 13px;
+}
+
+.font-13-5 {
+	font-size: 13.5px;
+}
+
+.font-14 {
+	font-size: 14px;
+}
+
+.font-14-5 {
+	font-size: 14.5px;
+}
+
+.pad-0 {
+	padding:0px;	
+}
+
+.mar-0 {
+	margin: 0px;
+}
+
+.b-none {
+	border: none;
+}
+
+.b-top-1 {
+	border-top: 2px solid black;
+}
+
+.m-top-5 {
+	margin-top: 5px;
+}
+
+.m-top-35 {
+	margin-top: 35px;
+}
+
+.pad-0 {
+	padding: 0px;
+}
+
+.pad-10 {
+	padding: 10px;
+}
+
+.c-wid-5 {
+	width: 5px;
+}
+
+.c-wid-50 {
+	width: 50px;
+}
+
+.c-wid-10 {
+	width: 15px;
+}

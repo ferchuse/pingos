@@ -1,0 +1,76 @@
+@media print
+{
+	.frente
+	{
+		background-image: url(../img/frente_credencial.jpg) !important;
+		background-size: 100% !important;
+		background-repeat: no-repeat !important;
+		float: left;
+	}
+	.reverso
+	{
+		padding: 15px 10px 5px 10px ;
+		background-image: url(../img/reverso_credencial.png) !important;
+		background-size: 100% !important;
+		background-repeat: no-repeat !important;
+		float: left;
+		margin-left: 5px;
+	}
+	.credencial
+	{
+		font-size: 11px !important;
+		line-height: 1;
+		height: 5.5cm !important;
+		width: 8.5cm !important;
+		padding: ;
+		background-size: 100%;
+		background-repeat: no-repeat;
+	}
+}
+.frente
+{
+	background-image: url(../img/frente_credencial.png) !important;
+	float: left;
+}
+.reverso
+{
+	padding: 15px 10px 5px 10px ;
+	background-image: url(../img/reverso_credencial.png);
+	float: left;
+	margin-left: 5px;
+}
+.credencial
+{
+	font-size: 11px !important;
+	line-height: 1;
+	height: 5.5cm;
+	width: 8.5cm;
+	padding: ;
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+.datos_alumno P
+{
+	margin-bottom: 0;
+}
+.datos_alumno
+{
+	margin: -22px 19px -2px 122px;
+	font-weight: bold;
+}
+.logo_credencial IMG
+{
+	width: 64px;
+}
+.logo_credencial
+{
+	float: right;
+	margin: 16px 34px 18px 18px;
+}
+.foto
+{
+	width: 2.5cm;
+	height: 3cm;
+	margin-top: 0.5cm;
+	margin-left: 22px;
+}
