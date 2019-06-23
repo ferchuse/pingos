@@ -1,8 +1,0 @@
-[11-Jun-2019 04:39:51 America/Mexico_City] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'sistemas'@'localhost' (using password: YES) in /home/microsit/glifo.micrositio.mx/practicas/abarrotes/conexi.php on line 26
-[11-Jun-2019 04:39:51 America/Mexico_City] PHP Warning:  mysqli_error() expects parameter 1 to be mysqli, boolean given in /home/microsit/glifo.micrositio.mx/practicas/abarrotes/conexi.php on line 28
-[11-Jun-2019 23:36:18 America/Mexico_City] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'sistemas'@'localhost' (using password: YES) in /home/microsit/glifo.micrositio.mx/practicas/abarrotes/conexi.php on line 26
-[11-Jun-2019 23:36:18 America/Mexico_City] PHP Warning:  mysqli_error() expects parameter 1 to be mysqli, boolean given in /home/microsit/glifo.micrositio.mx/practicas/abarrotes/conexi.php on line 28
-[17-Jun-2019 12:27:55 America/Mexico_City] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'sistemas'@'localhost' (using password: YES) in /home/microsit/glifo.micrositio.mx/practicas/abarrotes/conexi.php on line 27
-[17-Jun-2019 12:27:55 America/Mexico_City] PHP Warning:  mysqli_error() expects parameter 1 to be mysqli, boolean given in /home/microsit/glifo.micrositio.mx/practicas/abarrotes/conexi.php on line 29
-[18-Jun-2019 10:28:18 America/Mexico_City] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'sistemas'@'localhost' (using password: YES) in /home/microsit/glifo.micrositio.mx/practicas/abarrotes/conexi.php on line 27
-[18-Jun-2019 10:28:18 America/Mexico_City] PHP Warning:  mysqli_error() expects parameter 1 to be mysqli, boolean given in /home/microsit/glifo.micrositio.mx/practicas/abarrotes/conexi.php on line 29
