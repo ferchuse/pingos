@@ -1,6 +1,3 @@
-<?php
-	date_default_timezone_set('America/Mexico_City');
-?>
 <div class="row">
 	<nav class="navbar navbar-default ">
 		<div class="navbar-header">
@@ -15,7 +12,7 @@
 					<a class="navbar-brand hide" href="#"></a>
 				</div>
 				<div style="margin-left:20px;" class="col-xs-9 col-md-12">
-					<a href="index.php"><img src="img/logo_small_edit.png" class="ml-3 img-responsive" width="60px"></a>
+					<a href="../index.php"><img src="../img/logo_small_edit.png" class="ml-3 img-responsive" width="60px"></a>
 				</div>
 			</div>
 			
@@ -28,7 +25,7 @@
 						
 					?>
 					<li class="<?php echo $menu_activo == "principal" ? "active" : ''; ?>">
-						<a href="index.php">
+						<a href="../index.php">
 							<i class="fas fa-dollar-sign"></i> Ventas
 						</a>
 					</li>					
@@ -40,7 +37,7 @@
 					if ($_COOKIE["permiso_usuarios"] == "administrador") {
 					?>
 					<li class=" <?php echo $menu_activo == "compras" ? "active" : ''; ?>">
-						<a href="compras/compras_lista.php">
+						<a href="../compras/compras_lista.php">
 							<i class="fas fa-shopping-cart"></i> Compras
 						</a>
 					</li>
@@ -50,16 +47,16 @@
 						</a>
 						<ul class="dropdown-menu">
 							<li>
-								<a href="reportes.php"><i class="fas fa-chart-bar"></i> Ventas Por Día</a>
+								<a href="../reportes.php"><i class="fas fa-chart-bar"></i> Ventas Por Día</a>
 							</li>
 							<li>
-								<a href="reportes_movimientos.php"><i class="fas fa-chart-bar"></i> Movimientos</a>
+								<a href="../reportes_movimientos.php"><i class="fas fa-chart-bar"></i> Movimientos</a>
 							</li>
 						</ul>
 					</li>
 					
 					<li class=" <?php echo $menu_activo == "producto" ? "active" : ''; ?>">
-						<a href="productos.php">
+						<a href="../productos.php">
 							<i class="fa fa-list"></i> Productos
 						</a>
 					</li>
@@ -70,10 +67,10 @@
 						</a>
 						<ul class="dropdown-menu">
 							<li>
-								<a href="departamentos.php"><i class="fas fa-file-alt"></i> Departamentos</a>
+								<a href="../departamentos.php"><i class="fas fa-file-alt"></i> Departamentos</a>
 							</li>
 							<li>
-								<a href="proveedores.php"><i class="fas fa-file-alt"></i> Proveedores</a>
+								<a href="../proveedores.php"><i class="fas fa-file-alt"></i> Proveedores</a>
 							</li>
 						</ul>
 					</li>
@@ -83,7 +80,7 @@
 					if ($_COOKIE["permiso_usuarios"] == "caja" || $_COOKIE['permiso_usuarios'] == "administrador" || $_COOKIE['permiso_usuarios'] == "mostrador") {
 					?>
 					<li class="<?php echo $menu_activo == "resumen" ? "active" : ''; ?>">
-						<a href="resumen.php">
+						<a href="../resumen.php">
 							<i class="fas fa-cash-register"></i> Corte de Caja
 							<!-- <i class="fas fa-cut"></i> Corte de Caja -->
 						</a>
@@ -104,7 +101,7 @@
 					</a>
 					<ul class="dropdown-menu">
 						<li>
-							<a href="usuarios.php"><i class="fa fa-user-plus "></i> Usuarios</a>
+							<a href="../usuarios.php"><i class="fa fa-user-plus "></i> Usuarios</a>
 						</li>
 					</ul>
 				</li>
@@ -131,7 +128,7 @@
 				</a>
 				<ul class="dropdown-menu">
 					<li>
-						<a href="login/logout.php"><i class="fas fa-sign-out-alt"></i> Salir</a>
+						<a href="../login/logout.php"><i class="fas fa-sign-out-alt"></i> Salir</a>
 					</li>
 				</ul>
 			</li>
