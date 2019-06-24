@@ -369,8 +369,6 @@
 			<?php include('forms/modal_egresos.php');?>
 			
 			
-			<?php include('forms/tipo_pago.php');?>
-			
 			<?php  include('scripts.php'); ?>
 			<script src="js/resumen.js"></script>
 			<script src="js/pagos.js"></script>
