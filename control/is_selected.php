@@ -1,0 +1,1 @@
+<?php	function is_selected($proto,  $proto_db){		if($proto == $proto_db){			return 'selected';		}		else{			return ;		}	}	function is_checked($bool){		if($bool == 1 ){			return 'checked';		}		else{			return ;		}	}		function radio_checked($value1, $value2){		if($value1 == $value2){			return 'checked';		}		else{			return ;		}	}?>
