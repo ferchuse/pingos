@@ -3,7 +3,9 @@
 	include("conexi.php");
 	$link = Conectarse();
 	$menu_activo = "resumen";
-	
+	$egresos = 0;
+
+
 	if(isset($_GET["fecha_ventas"])){
 		$fecha_ventas = $_GET["fecha_ventas"];
 	}
