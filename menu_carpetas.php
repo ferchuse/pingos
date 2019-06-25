@@ -104,7 +104,7 @@
 							<a href="../usuarios.php"><i class="fa fa-user-plus "></i> Usuarios</a>
 						</li>
 						<li>
-							<a href="#">Versión 25-jun-2019</a>
+							<a href="#">Versión 25-JUN-2019</a>
 						</li>
 					</ul>
 				</li>
