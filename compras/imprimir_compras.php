@@ -1,12 +1,11 @@
 <?php
 
-include("conexi.php");
+include("../conexi.php");
 $link = Conectarse();
-$menu_activo = "compras";
-error_reporting(0);
 
 $consulta = "SELECT * FROM compras 
 	LEFT JOIN compras_detalle USING (id_compras)
+	LEFT JOIN proveedores USING (id_proveedores)
 	WHERE id_compras={$_GET["id_compras"]}";
 
 $result = mysqli_query($link, $consulta);
@@ -42,7 +41,7 @@ while ($fila = mysqli_fetch_assoc($result)) {
         }
     </style>
 
-    <?php include("styles.php");
+    <?php include("../styles_carpetas.php");
 
     // echo $consulta;
 
@@ -127,7 +126,7 @@ while ($fila = mysqli_fetch_assoc($result)) {
         </div>
     </section>
 
-    <?php include('scripts.php'); ?>
+    <?php include('../scripts_carpetas.php'); ?>
 
 
 </body>
