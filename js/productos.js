@@ -17,7 +17,7 @@ $(document).ready(function () {
             data: $("#form_filtros").serializeArray()
         }).done(function (respuesta) {
             $.each(respuesta, function (index, value) {
-                bgClass = value.existencia_productos < value.min_productos ? "bg-danger" : " ";
+                bgClass = Number(value.existencia_productos) < Number(value.min_productos) ? "bg-danger" : " ";
                
                 tableTemplate += `
                 <tr class="${bgClass}">
