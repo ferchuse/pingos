@@ -1,7 +1,7 @@
 <?php
-	include("login/login_success.php");
-	include("funciones/generar_select.php");
-	include("conexi.php");
+	include("../login/login_success.php");
+	include("../funciones/generar_select.php");
+	include("../conexi.php");
 	$link = Conectarse();
 	$menu_activo = "compras";
 	error_reporting(0);
@@ -48,11 +48,11 @@
 		</style>
 		
     <title>Nueva Compra</title>
-    <?php include("styles.php");?>
+    <?php include("../styles_carpetas.php");?>
 	</head>
   <body>
 		<div class="container-fluid hidden-print">
-			<?php include("menu.php");?>
+			<?php include("../menu_carpetas.php");?>
 		</div>
 		
 		<div class="container-fluid hidden-print">
@@ -122,10 +122,10 @@
 		<div id="ticket" class="visible-print">
 			
 		</div>
-		<?php include('scripts.php'); ?>
-		<?php include('forms/modal_venta.php'); ?>
-		<?php include('forms/modal_granel.php'); ?>
-		<script src="js/compras.js"></script>
+		<?php include('../scripts_carpetas.php'); ?>
+		<?php include('../forms/modal_venta.php'); ?>
+		<?php include('../forms/modal_granel.php'); ?>
+		<script src="compras.js"></script>
 		
 	</body>
 </html>					

@@ -17,8 +17,8 @@ $(document).ready(function () {
             data: $("#form_filtros").serializeArray()
         }).done(function (respuesta) {
             $.each(respuesta, function (index, value) {
-                if (value.existencia_productos < value.min_productos) bgClass = "bg-danger";
-                else bgClass = " ";
+                bgClass = value.existencia_productos < value.min_productos ? "bg-danger" : " ";
+               
                 tableTemplate += `
                 <tr class="${bgClass}">
                 <td class="text-center">${value.descripcion_productos}</td>
