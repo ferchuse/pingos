@@ -21,8 +21,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 		
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    
+   
 		
 		<link href="../css/bootstrap.min.css" rel="stylesheet" media="all">
 		<link href="../css/alertify.min.css" rel="stylesheet" media="all"/>
@@ -32,7 +31,6 @@
 		<link href="login.css" rel="stylesheet" >
 		
 		<?php include("../scripts_carpetas.php")?>
-    <script type="text/javascript" src="../lib/alertify.min.js"></script>
     <script type="text/javascript" src="login.js"></script>
 		
 	</head>
@@ -89,7 +87,7 @@
 							
 							
 							<button type="submit" id="btn_login" name="iniciar" class="btn btn-lg btn-primary btn-block">
-								<i class="fa fa-sign-in"></i> Iniciar Sesión <i id="spinner"
+								<i class="fas fa-sign-in"></i> Iniciar Sesión <i id="spinner"
 								class="fa fa-spin fa-spinner hide"></i>
 							</button>
 						</form>

@@ -6,24 +6,8 @@
     
     //$id_compras = mysqli_insert_id($link)
 	
-	//consulta el producto enviado por GET
+	//agregar producto (_POST) a compras detalle 
 	
-	$consulta_producto = "SELECT * FROM productos WHERE id_productos = '{$_GET["id_productos"]}'";
 	
-	$result = mysqli_query($link, $consulta);
-	
-	if($result){
-		while($fila = mysqli_fetch_assoc($result){
 
-            // asignar producto encontrado a una variable 
-		}
-	}
-	else{
-		
-		
-	}
-	
-	
-	//agrega el producto a la compra_detalle usando el id_compra 
-	
 ?>
