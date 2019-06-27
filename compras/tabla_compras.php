@@ -79,7 +79,7 @@ if (isset($_GET["fecha_final"])) {
 								<?php
 
 
-								$consultaVentas = "SELECT * FROM compras LEFT JOIN proveedores USING(id_proveedores) WHERE date(fecha_compras) BETWEEN '$fa_inicial' AND '$fa_final'";
+								$consultaVentas = "SELECT * FROM compras LEFT JOIN proveedores USING(id_proveedores) WHERE date(fecha_compras) BETWEEN '$fa_inicial' AND '$fa_final' ORDER BY (fecha_compras) DESC";
 								$resultadoVentas = mysqli_query($link, $consultaVentas);
 								$total = array();
 								$tarjeta = array();
@@ -121,7 +121,6 @@ if (isset($_GET["fecha_final"])) {
 								<?php
 							}
 							?>
-
 							</table>
 						</h4>
 					</div>
@@ -131,3 +130,5 @@ if (isset($_GET["fecha_final"])) {
 		</div>
 	</form>
 </div>
+
+<!-- Comment David -->
