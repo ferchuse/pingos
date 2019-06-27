@@ -6,14 +6,14 @@ $dt_fecha_final = new DateTime("last day of this month");
 
 if (isset($_GET["fecha_inicial"])) {
 	$fa_inicial = $_GET["fecha_inicial"];
-}else{
+} else {
 
 	$fa_inicial = $dt_fecha_inicial->format("Y-m-d");
 }
 
 if (isset($_GET["fecha_final"])) {
 	$fa_final = $_GET["fecha_final"];
-}else{
+} else {
 
 	$fa_final = $dt_fecha_final->format("Y-m-d");
 }
@@ -31,7 +31,7 @@ if (isset($_GET["fecha_final"])) {
 		</div>
 
 		<div class="col-md-12 ">
-			
+
 			<div class="row ">
 				<!-- Filtro Fecha -->
 				<div class="col-sm-9 text-left">
@@ -54,7 +54,7 @@ if (isset($_GET["fecha_final"])) {
 					<a href="compras_nueva.php" class="btn btn-success"><i class="fas fa-plus"></i> Nueva</a>
 				</div>
 			</div>
-			
+
 		</div>
 
 	</div>
@@ -114,8 +114,18 @@ if (isset($_GET["fecha_final"])) {
 											echo '$' . $total_compras;
 											?>
 										</td>
+										
+										<!-- Columna Acciones -->
 										<td class="text-center">
+
+											<!-- Botón Imprimir -->
 											<a target="_blank" href="imprimir_compras.php?id_compras=<?php echo $id_compras ?>" id="imprimir_compra" class="btn btn-primary"><i class="fas fa-print"></i></a>
+
+											<!-- Botón Editar -->
+											<?php if ($estatus_compras == "PENDIENTE") { ?>
+												<a target="_blank" href="compras_nueva.php?id_compras=<?php echo $id_compras ?>" id="editar_compra" class="btn btn-warning"><i class="fas fa-edit"></i></a>
+											<?php } ?>
+
 										</td>
 									</tr>
 								<?php
