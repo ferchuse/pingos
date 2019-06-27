@@ -3,7 +3,7 @@
 	$link = Conectarse();
 	
 	$id_usuarios = $_POST['id_usuarios'];
-	$id_turnos = $_POST['id_turnos'];
+	$id_turnos = $_COOKIE['id_turnos'];
 	$listaProductos = $_POST['productos'];
 	$articulos_ventas = $_POST['articulos_ventas'];
 	
@@ -16,7 +16,7 @@
 	}
 	// $tipo_productos = $_POST['tipo_productos'];
 	// $descripcion_productos = $_POST['descripcion_productos'];
-	$total = $_POST['total'];
+	$total = $_POST['total_ventas'];
 	
 	$insertarVentas = ("INSERT INTO ventas SET
 	id_usuarios = '$id_usuarios',
@@ -26,9 +26,7 @@
 	total_ventas = '{$_POST["total_ventas"]}',
 	articulos_ventas = '$articulos_ventas',
 	estatus_ventas = '$estatus',
-	efectivo_ventas = '{$_POST["total_ventas"]}',
-	tarjeta_ventas = '{$_POST["tarjeta_ventas"]}'
-	
+	efectivo_ventas = '{$_POST["total_ventas"]}'
 	");
 	$exec_query = mysqli_query($link,$insertarVentas);
 	
@@ -101,21 +99,7 @@
 		
 		$respuesta["result_existencia"] = $result_existencia ;
 		
-		// $query_stock = "SELECT *  FROM productos 
-		// WHERE id_productos = '$producto[id_productos]'";
 		
-		// $result_stock = mysqli_query( $link, $query_stock )
-		// or die("Error al ejecutar consulta: $query_stock".mysqli_error($link));
-		
-		// if(mysqli_num_rows($result_stock) > 0){
-		// while($fila_inv = mysqli_fetch_assoc($result_stock)){
-		// $existencia_anterior = $fila_inv["existentes_contenedores"];
-		// }
-		// }
-		
-		//actualiza existencias
-		
-		$respuesta["existencias"][] = $existencia_anterior;
 		
 		
 	}

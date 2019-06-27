@@ -9,7 +9,9 @@ if($_GET["id_departamentos"] != '') {
 }
 if($_GET["existencia"] != '') {        
     $consulta.= " AND existencia_productos < min_productos";
-}
+} 
+//comentario X
+
 $consulta.= " ORDER BY descripcion_productos";
 $result = mysqli_query($link,$consulta);
 if(!$result){
