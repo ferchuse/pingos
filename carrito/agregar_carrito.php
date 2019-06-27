@@ -5,7 +5,7 @@
 	$query = "SELECT * FROM compras WHERE estatus_compras='PENDIENTE' ";
 	$result = mysqli_query($link, $query);
 	$id_compras;
-	$respuesta = new array();
+	$respuesta = array();
 	if ($result) {
 		if (mysqli_num_rows($result) > 0) {
 			while ($fila = mysqli_fetch_assoc($result)) {
