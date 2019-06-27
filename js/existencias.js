@@ -5,13 +5,13 @@ $(document).ready(function(){
 				console.log("modal_existencias.shown");
 	});
 	
-	$("#form_existencias").submit(agregarExistencia);
+	$("#form_existencias").submit(agregarCarrito);
 	
 });
 
 
 
-function agregarExistencia(event){
+function agregarCarrito(event){
 	event.preventDefault();
 	
 		$form = $(this);
@@ -20,22 +20,22 @@ function agregarExistencia(event){
 		$boton.prop('disabled',true);
 		$icono.toggleClass('fa-save fa-spinner fa-spin ');
 		
-		console.log("agregarExistencia");
+		console.log("agregarCarrito");
 		console.log($form.serialize());
 	
 		$.ajax({
-			url: 'control/guardar_existencias.php',
+			url: 'carrito/agregar_carrito.php',
 			method: 'POST',
 			data: $form.serialize()
-		}).done(function afterExistencia(respuesta){
+		}).done(function (respuesta){
 			console.log("afterExistencia: " + respuesta);
 			console.log($("#update_target"));
-			$("#update_target").html(respuesta.existencia_nueva);
+		//	$("#update_target").html(respuesta.existencia_nueva);
 			$boton.prop('disabled',false);
 			$icono.toggleClass('fa-save fa-spinner fa-spin ');
 			$('#modal_existencias').modal("hide");
 			
-			window.location.reload();
+			//window.location.reload();
 		});
 }
 
