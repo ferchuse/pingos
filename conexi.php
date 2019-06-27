@@ -42,7 +42,8 @@
 			die( "Error cambiando TimeZone.". mysqli_error());
 		} */
 		
-		
+		// mysqli_query($link, "SET NAMES 'utf8'") or die("Error Cambiando charset").mysqli_error($link);
+		// mysqli_query($link, "SET CHARACTER SET utf8") or die("Error en charset UTF8".mysqli_error($link));
 		
 		//ACTIVAR SI LA BASE DE DATOS NO ESTA EN UTF-8
 		//mysqli_query($set_names, $link) or die( "Error cambiando Charset". mysqli_error());
