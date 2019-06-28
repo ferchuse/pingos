@@ -64,7 +64,7 @@
 					<div class="col-md-4">
 						<div class="form-group">
 							<label class="" for="id_compra">ID Compra:</label>
-							<input readonly id="id_compra" type="text" class="form-control" value="<?php echo $_GET[id_compras];?>" placeholder="Código de barras" size="50">
+							<input readonly id="id_compra" type="text" class="form-control" value="<?php echo $_GET[id_compras];?>" placeholder="" size="50">
 						</div>
 					</div>
 					<div class="col-md-4">
