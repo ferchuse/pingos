@@ -36,7 +36,12 @@ $(document).ready(function () {
                 <button class="btn btn-danger btn_eliminar" data-id_producto="${value.id_productos}">
                     <i class="fa fa-trash"></i>
                 </button>
-                <button class="btn btn-success btn_existencia" data-id_productos="${value.id_productos}">
+                <button class="btn btn-success btn_carrito" 
+                    data-id_productos="${value.id_productos}"
+                    data-descripcion="${value.descripcion_productos}"
+                    data-precio="${value.costo_proveedor}"
+                   
+                >
                     <i class="fa fa-cart-plus"></i>
                 </button>
                     </td>
@@ -136,7 +141,7 @@ $(document).ready(function () {
 
             });
 
-            $('.btn_existencia').click(pedirCantidad);
+            $('.btn_carrito').click(pedirCantidad);
 
 
         });
