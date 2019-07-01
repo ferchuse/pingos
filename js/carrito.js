@@ -1,15 +1,27 @@
 $(document).ready(function(){
 	
 	$('#modal_existencias').on('shown.bs.modal', function() {
-        $("#cantidad_entrada").focus();
+				$("#cantidad_carrito").focus();
+				$("#cantidad_carrito").select();
+				calcularImporte();
 				console.log("modal_existencias.shown");
 	});
 	
 	$("#form_existencias").submit(agregarCarrito);
-	
+	$("#cantidad_carrito").keyup(calcularImporte);
 });
 
 
+
+function calcularImporte(event){
+	let cantidad = Number($("#cantidad_carrito").val());
+	let precio = Number($("#precio_carrito").val());
+
+	let importe = cantidad * precio;
+
+	$("#importe_carrito").val(importe.toFixed(2))
+
+}
 
 function agregarCarrito(event){
 	event.preventDefault();
@@ -43,19 +55,11 @@ function pedirCantidad(event){
 	console.log("pedirCantidad()");
 	$("#form_existencias")[0].reset();
 	boton = $(this);
-	console.log("boton");
-	console.log(boton.data("id_productos"));
-	console.log(boton.data());
-	var update_target = boton.closest("td").prev();
-	update_target.prop("id", "update_target");
-	console.log("update_target: " + update_target.html());
-	console.log(update_target);
-	var id_productos = boton.data('id_productos');
-	var existencia_anterior = boton.data('existencia_anterior');
-		
-	$("#id_productos_inv").val(boton.data('id_productos'));
-	$("#existentes_contenedores_inv").val(boton.data('existencia_anterior'));
-	$("#cantidad_contenedora_inv").val(boton.data('cantidad_contenedora'));
+
+	$("#id_productos_carrito").val(boton.data('id_productos'));
+	$("#descripcion_carrito").val(boton.data('descripcion'));
+	$("#precio_carrito").val(boton.data('precio'));
+
 	$("#modal_existencias").modal("show");
 
 }

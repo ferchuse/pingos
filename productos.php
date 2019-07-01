@@ -103,7 +103,7 @@
 		
 		<?php  include('scripts.php'); ?>
 		<script src="js/productos.js"></script>
-		<script src="js/existencias.js"></script>
+		<script src="js/carrito.js"></script>
 		<script src="https://unpkg.com/sticky-table-headers"></script>
 	</body>
 </html>
