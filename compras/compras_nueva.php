@@ -42,7 +42,6 @@
 				padding: 10px;				
 				}	
 				
-				
 				}
 			</style>  
 		</style>
@@ -58,21 +57,27 @@
 		<div class="container-fluid hidden-print">
 			<form id="form_agregar_producto" class="form-inline" autocomplete="off">
 				<div class="row">
-					<div class="col-md-4">
+					<!-- <div class="col-md-4">
 						<label for="">Código del Producto:</label>
-						
 						<input id="codigo_producto"   type="text" class="form-control" placeholder="Código de barras" size="50">
-						
+					</div> -->
+					<div class="col-md-4">
+						<div class="form-group">
+							<label class="" for="id_compra">ID Compra:</label>
+							<input readonly id="id_compra" type="text" class="form-control" value="<?php echo $_GET[id_compras];?>" placeholder="" size="50">
+						</div>
 					</div>
 					<div class="col-md-4">
 						<div class="form-group">
-							<label for="">Producto:</label>
+							<label for="buscar_producto">Producto:</label>
 							<input id="buscar_producto" autofocus  type="text" class="form-control" size="50">
 						</div>
 					</div>
 					<div class="col-sm-2 col-sm-offset-1">
-						<label>Proveedor</label> 
-						<?php echo generar_select($link, "proveedores", "id_proveedores", "nombre_proveedores");?>
+						<div class="form-group">
+							<label for>Proveedor</label> 
+							<?php echo generar_select($link, "proveedores", "id_proveedores", "nombre_proveedores");?>
+						</div>
 					</div>
 					
 				</div>
