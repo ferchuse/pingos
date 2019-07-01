@@ -131,7 +131,6 @@ if (isset($_GET["fecha_final"])) {
 								<?php
 							}
 							?>
-
 							</table>
 						</h4>
 					</div>
@@ -141,3 +140,5 @@ if (isset($_GET["fecha_final"])) {
 		</div>
 	</form>
 </div>
+
+<!-- Comment David -->
