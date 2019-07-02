@@ -90,6 +90,9 @@
 			<section id="footer">
 				<div class="row">
 					<div class="col-sm-9 text-right">
+						<button class="btn btn-info btn-lg"  id="nueva_venta" onclick="window.location.reload(true);">
+								Nueva Venta
+						</button>
 						<button class="btn btn-success btn-lg" FORM="" id="cerrar_venta">F12 - Cobrar</button>
 					</div>
 					<div class="col-sm-1 h2">

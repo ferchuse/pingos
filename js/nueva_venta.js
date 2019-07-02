@@ -46,7 +46,7 @@ $(document).ready( function onLoad(){
 	});
 	
 	
-	$('#codigo_producto').keyup( function buscarCodigo(event){
+	$('#codigo_producto').keypress( function buscarCodigo(event){
 		if(event.which == 13){
 			console.log("buscarCodigo()");
 			var input = $(this);
@@ -117,11 +117,7 @@ $(document).ready( function onLoad(){
 	
 	$('#cerrar_venta').click( guardarVenta);
 	
-	$('.btn_pieza').click( function clickPieza(){
-		agregarProducto($(this).data());
-		
-		$("#codigo_producto").focus();
-	});
+	
 }); 
 
 
@@ -153,6 +149,7 @@ function agregarGranel(event){
 	$("#modal_granel").modal("hide");
 	agregarProducto(producto_elegido);
 	
+	$("#buscar_producto").focus();
 }
 
 function buscarProducto(campobd,tablabd,id_campobd){
@@ -229,6 +226,7 @@ function agregarProducto(producto){
 		$("#buscar_producto").val("");
 		
 		
+		
 	}
 	
 	alertify.success("Producto Agregado")
@@ -282,6 +280,8 @@ function guardarVenta(event){
 				// imprimirTicket( respuesta.id_ventas)
 				
 			}
+			}).fail(function(xhr, error, errnum){
+			alertify.error('Ocurrio un error' + error);
 			}).always(function(){
 			boton.prop('disabled',false);
 			icono.toggleClass('fa fa-usd fa fa-spinner fa-pulse fa-fw');
@@ -469,39 +469,39 @@ function resetFondo(){
 }
 
 function navegarFilas(e){
-    var $table = $(this);
-    var $active = $('input:focus,select:focus',$table);
-    var $next = null;
-    var focusableQuery = 'input:visible,select:visible,textarea:visible';
-    var position = parseInt( $active.closest('td').index()) + 1;
-    console.log('position :',position);
-    switch(e.keyCode){
-        case 37: // <Left>
-            $next = $active.parent('td').prev().find(focusableQuery);   
-            break;
-        case 38: // <Up>                    
-            $next = $active
-                .closest('tr')
-                .prev()                
-                .find('td:nth-child(' + position + ')')
-                .find(focusableQuery)
-            ;
-            
-            break;
-        case 39: // <Right>
-            $next = $active.closest('td').next().find(focusableQuery);            
-            break;
-        case 40: // <Down>
-            $next = $active
-                .closest('tr')
-                .next()                
-                .find('td:nth-child(' + position + ')')
-                .find(focusableQuery)
-            ;
-            break;
-    }       
-    if($next && $next.length)
-    {        
-        $next.focus();
-    }
+	var $table = $(this);
+	var $active = $('input:focus,select:focus',$table);
+	var $next = null;
+	var focusableQuery = 'input:visible,select:visible,textarea:visible';
+	var position = parseInt( $active.closest('td').index()) + 1;
+	console.log('position :',position);
+	switch(e.keyCode){
+		case 37: // <Left>
+		$next = $active.parent('td').prev().find(focusableQuery);   
+		break;
+		case 38: // <Up>                    
+		$next = $active
+		.closest('tr')
+		.prev()                
+		.find('td:nth-child(' + position + ')')
+		.find(focusableQuery)
+		;
+		
+		break;
+		case 39: // <Right>
+		$next = $active.closest('td').next().find(focusableQuery);            
+		break;
+		case 40: // <Down>
+		$next = $active
+		.closest('tr')
+		.next()                
+		.find('td:nth-child(' + position + ')')
+		.find(focusableQuery)
+		;
+		break;
+	}       
+	if($next && $next.length)
+	{        
+		$next.focus();
+	}
 }
