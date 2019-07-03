@@ -1,9 +1,3 @@
-var tabla_venta = {
-	productos: [],
-	subtotal: 0,
-	descuento: 0,
-	total: 0
-};
 
 var producto_elegido ;
 
@@ -48,6 +42,31 @@ function buscarDescripcion(){
 }
 
 $(document).ready(function(){
+	
+	if($("#id_compras").val()){
+		
+		$.ajax({
+			url: "compras_detalle.php",
+			data: {
+				
+				id_compras: $("#id_compras").val()
+				
+			}
+			
+			}).done(function(respuesta){
+			
+			for(let producto of respuesta.productos ){
+				
+				agregarProducto(producto);
+			}
+			console.log("compras_detalle", respuesta)
+			
+		});
+		
+		
+	}
+	
+	
 	$('#form_granel').submit(agregarGranel);
 	$('#form_agregar_producto').submit(function(event){
 		
@@ -71,7 +90,7 @@ $(document).ready(function(){
 	
 	//Autocomplete Productos https://github.com/devbridge/jQuery-Autocomplete
 	$("#buscar_producto").autocomplete({
-		serviceUrl: "control/productos_autocomplete.php",   
+		serviceUrl: "../control/productos_autocomplete.php",   
 		onSelect: function(eleccion){
 			console.log("Elegiste: ",eleccion);
 			if(eleccion.data.unidad_productos == 'KG'){
@@ -83,6 +102,7 @@ $(document).ready(function(){
 				$("#importe").val(eleccion.data.costo_proveedor * 1);
 				producto_elegido = eleccion.data;
 				$("#buscar_producto").val("");
+				$("#buscar_producto").focus();
 			} 
 			else{ 
 				
@@ -129,6 +149,7 @@ function agregarGranel(event){
 	$("#modal_granel").modal("hide");
 	agregarProducto(producto_elegido);
 	
+	$("#buscar_producto").focus();
 }
 
 

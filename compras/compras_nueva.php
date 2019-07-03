@@ -4,7 +4,8 @@
 	include("../conexi.php");
 	$link = Conectarse();
 	$menu_activo = "compras";
-	error_reporting(0);
+	
+	
 	
 ?>
 <!DOCTYPE html>
@@ -67,17 +68,24 @@
 							<input readonly id="id_compra" type="text" class="form-control" value="<?php echo $_GET[id_compras];?>" placeholder="" size="50">
 						</div>
 					</div>
-					<div class="col-md-4">
+					<div class="col-md-3">
 						<div class="form-group">
 							<label for="buscar_producto">Producto:</label>
 							<input id="buscar_producto" autofocus  type="text" class="form-control" size="50">
 						</div>
 					</div>
-					<div class="col-sm-2 col-sm-offset-1">
-						<div class="form-group">
-							<label for>Proveedor</label> 
-							<?php echo generar_select($link, "proveedores", "id_proveedores", "nombre_proveedores");?>
-						</div>
+					<div class="col-sm-2 ">
+						<?php
+							if(isset($_GET["id_compras"])){
+								
+								echo "<input hidden id='id_compras' value='{$_GET["id_compras"]}'>";
+							}
+							
+						?>
+					</div>
+					<div class="col-sm-2 ">
+						<label>Proveedor</label> 
+						<?php echo generar_select($link, "proveedores", "id_proveedores", "nombre_proveedores");?>
 					</div>
 					
 				</div>

@@ -40,7 +40,7 @@ $(document).ready(function () {
                     data-id_productos="${value.id_productos}"
                     data-descripcion="${value.descripcion_productos}"
                     data-precio="${value.costo_proveedor}"
-                   
+                    data-unidad="${value.unidad_productos}"
                 >
                     <i class="fa fa-cart-plus"></i>
                 </button>
