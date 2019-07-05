@@ -58,15 +58,9 @@
 		<div class="container-fluid hidden-print">
 			<form id="form_agregar_producto" class="form-inline" autocomplete="off">
 				<div class="row">
-					<!-- <div class="col-md-4">
+					<div class="col-md-2">
 						<label for="">Código del Producto:</label>
-						<input id="codigo_producto"   type="text" class="form-control" placeholder="Código de barras" size="50">
-					</div> -->
-					<div class="col-md-4">
-						<div class="form-group">
-							<label class="" for="id_compra">ID Compra:</label>
-							<input readonly id="id_compra" type="text" class="form-control" value="<?php echo $_GET[id_compras];?>" placeholder="" size="50">
-						</div>
+						<input id="codigo_producto"   type="text" class="form-control" placeholder="Código de barras">
 					</div>
 					<div class="col-md-3">
 						<div class="form-group">
@@ -75,17 +69,15 @@
 						</div>
 					</div>
 					<div class="col-sm-2 ">
-						<?php
-							if(isset($_GET["id_compras"])){
-								
-								echo "<input hidden id='id_compras' value='{$_GET["id_compras"]}'>";
-							}
-							
-						?>
+						
 					</div>
 					<div class="col-sm-2 ">
 						<label>Proveedor</label> 
 						<?php echo generar_select($link, "proveedores", "id_proveedores", "nombre_proveedores");?>
+					</div>
+					<div class="col-sm-2">
+						<label><input checked type="checkbox" id="entrada_inventario" value="PENDIENTE"> Entrada a Inventario </label> 
+						<input  id='id_compras' value='<?php echo $_GET["id_compras"]?>'>
 					</div>
 					
 				</div>

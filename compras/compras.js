@@ -43,6 +43,7 @@ function buscarDescripcion(){
 
 $(document).ready(function(){
 	
+	// Editar Compras
 	if($("#id_compras").val()){
 		
 		$.ajax({
@@ -56,6 +57,8 @@ $(document).ready(function(){
 			}).done(function(respuesta){
 			
 			for(let producto of respuesta.productos ){
+				
+			
 				
 				agregarProducto(producto);
 			}
@@ -252,7 +255,7 @@ function guardarVenta(event){
 		});
 		
 		$.ajax({
-			url: 'control/guardar_compras.php',
+			url: 'guardar_compras.php',
 			method: 'POST',
 			dataType: 'JSON',
 			data:{
@@ -261,12 +264,14 @@ function guardarVenta(event){
 				articulos_ventas: articulos,
 				productos: productos, 
 				total: $("#total").val(),
-				id_proveedores: $("#id_proveedores").val()
+				id_proveedores: $("#id_proveedores").val(),
+				entrada_inventario: $("#entrada_inventario").prop("checked"),
+				id_compras: $("#id_compras").val()
 			}
 			}).done(function(respuesta){
 			if(respuesta.estatus_venta == "success"){
 				alertify.success('Compra Guardada');
-				window.location.href="compras_lista.php";
+				// window.location.href="compras_lista.php";
 				
 				// imprimirTicket( respuesta.id_ventas)
 				

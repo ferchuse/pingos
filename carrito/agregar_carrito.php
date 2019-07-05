@@ -1,23 +1,25 @@
 <?php
 	include("../conexi.php");
 	$link = Conectarse();
-	
-	$query = "SELECT * FROM compras WHERE estatus_compras='PENDIENTE' ";
-	$result = mysqli_query($link, $query);
 	$id_compras;
 	$respuesta = [];
 	
+	//Busca una compra pendiente Si existe obtiene el id, sino la crea y obtiene el id
+	$query = "SELECT * FROM compras WHERE estatus_compras='PENDIENTE' ";
+	$result = mysqli_query($link, $query);
 	if ($result) {
 		if (mysqli_num_rows($result) > 0) {
 			while ($fila = mysqli_fetch_assoc($result)) {
 				$id_compras = $fila['id_compras'];
 			}
-			} else {
+			
+		} 
+		else {
 			$query = "INSERT INTO compras SET fecha_compras=now(), estatus_compras='PENDIENTE', id_usuarios={$_COOKIE['id_usuarios']};";
 			$result  = mysqli_query($link, $query);
 			
 			if($result){
-				
+				//Devuelve el ultimo autoincrementable
 				$id_compras = mysqli_insert_id($link);
 				
 			}
@@ -44,6 +46,15 @@
 	$result  = mysqli_query($link, $insert_detalle);
 	
 	$respuesta["insert_detalle"] = $result ;
+	
+	//Actualiza total de la compra
+	
+	$update_total = "UPDATE compras SET total_compras = (SELECT SUM(importe) FROM compras_detalle WHERE id_compras = '$id_compras') WHERE id_compras = '$id_compras'";
+	
+	$result_total = mysqli_query($link, $update_total);
+	
+	$respuesta["update_total"] = $update_total;
+	$respuesta["result_total"] = $result_total ? "success": mysqli_error($link);
 	echo json_encode($respuesta);
 	
 	
