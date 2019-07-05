@@ -1,43 +1,63 @@
 <?php
 	include("../conexi.php");
 	$link = Conectarse();
-			//Busca la ultima compra PENDIENTE y si existe usa el id de la compra , sino inserta una nueva compra y  asigna el id_compras
-
+	$id_compras;
+	$respuesta = [];
+	
+	//Busca una compra pendiente Si existe obtiene el id, sino la crea y obtiene el id
 	$query = "SELECT * FROM compras WHERE estatus_compras='PENDIENTE' ";
 	$result = mysqli_query($link, $query);
-	$id_compras;
-	$producto = ["id_productos" => "19", "cantidad_productos" => "5", "precio" => "25", "importe" => "125", "descripcion" => "Gomitas" ];
-		
-	
-
-	$respuesta = array();
 	if ($result) {
 		if (mysqli_num_rows($result) > 0) {
 			while ($fila = mysqli_fetch_assoc($result)) {
-				$id_compra = $fila['id_compras'];
+				$id_compras = $fila['id_compras'];
 			}
-		} else {
+			
+		} 
+		else {
 			$query = "INSERT INTO compras SET fecha_compras=now(), estatus_compras='PENDIENTE', id_usuarios={$_COOKIE['id_usuarios']};";
 			$result  = mysqli_query($link, $query);
-			$id_compra = mysqli_insert_id($link);
+			
+			if($result){
+				//Devuelve el ultimo autoincrementable
+				$id_compras = mysqli_insert_id($link);
+				
+			}
+			else{
+				
+				$respuesta['error'] = $query . mysqli_error($link);	
+			}
 			
 		}	
-		$respuesta['id_compra'] = $id_compra;	
+		$respuesta['id_compras'] = $id_compras;	
 	}
-
-
-	$consulta_compras_detalle = "INSERT INTO compras_detalle SET id_compras='{$id_compra}', id_producto='{$producto["id_productos"]}',
-	precio='{$producto["precio"]}', cantidad='{$producto["cantidad_productos"]}', importe='{$producto["importe"]}', descripcion='{$producto["descripcion"]}'; ";
-
-		
+	
+	// Inserta producto a Productos Detalle	
+	
+	$insert_detalle = "INSERT INTO compras_detalle SET 
+	id_compras = '$id_compras',
+	id_productos = '{$_POST["id_productos"]}',
+	unidad_productos = '{$_POST["unidad"]}',
+	cantidad = '{$_POST["cantidad"]}',
+	descripcion= '{$_POST["descripcion"]}',
+	precio='{$_POST["precio"]}',
+	importe= '{$_POST["importe"]}' ";
+	
+	$result  = mysqli_query($link, $insert_detalle);
+	
+	$respuesta["insert_detalle"] = $result ;
+	
+	//Actualiza total de la compra
+	
+	$update_total = "UPDATE compras SET total_compras = (SELECT SUM(importe) FROM compras_detalle WHERE id_compras = '$id_compras') WHERE id_compras = '$id_compras'";
+	
+	$result_total = mysqli_query($link, $update_total);
+	
+	$respuesta["update_total"] = $update_total;
+	$respuesta["result_total"] = $result_total ? "success": mysqli_error($link);
 	echo json_encode($respuesta);
-
-
-    
-    //$id_compras = mysqli_insert_id($link)
-	
-	//agregar producto (_POST) a compras detalle 
 	
 	
-
+	
+	
 ?>

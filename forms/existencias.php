@@ -18,17 +18,21 @@
 							<input required readonly type="number" min="0" step=".01" class="form-control" id="id_productos_carrito" name="id_productos">
 						</div>
 						<div class="form-group ">
+							<label for="unidad_carrito">Unidad:</label>
+							<input required readonly type="text" class="form-control" id="unidad_carrito" name="unidad">
+						</div>
+						<div class="form-group ">
 							<label for="existencia_productos_inv">Descripción:</label>
-							<input readonly type="text" class="form-control" id="descripcion_carrito" name="descripcion_productos">
+							<input readonly type="text" class="form-control" id="descripcion_carrito" name="descripcion">
 						</div>
 						
 						<div class="form-group ">
 							<label for="existentes_contenedores">PRECIO</label>
-							<input readonly placeholder="PRECIO" type="number" min="0" step=".01" class="form-control" id="precio_carrito"  name="precio_producto">
+							<input readonly placeholder="PRECIO" type="number" min="0" step=".01" class="form-control" id="precio_carrito"  name="precio">
 						</div>
 						<div class="form-group ">
 							<label for="existentes_contenedores">IMPORTE</label>
-							<input  readonly  type="number" min="0" step=".01" class="form-control" id="importe_carrito"  name="importe_producto">
+							<input  readonly  type="number" min="0" step=".01" class="form-control" id="importe_carrito"  name="importe">
 						</div>
 				</div>
 			
