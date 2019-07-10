@@ -34,13 +34,13 @@
 		</style>
     <title>Proveedores</title>
 		
-    <?php include("styles.php"); ?>
+    <?php include("../styles_carpetas.php"); ?>
 		
 	</head>
 	
 	<body>
     <div class="container-fluid">
-			<?php include("menu.php"); ?>
+			<?php include("../menu_carpetas.php"); ?>
 		</div>
     <section class="container">
 			<strong>
@@ -82,7 +82,7 @@
 			</table>
 			</section>
 
-			<?php include('scripts.php'); ?>
+			<?php include('../scripts_carpetas.php'); ?>
 			<?php include('forms/form_proveedores.php'); ?>
 					
       <pre hidden id="debug">

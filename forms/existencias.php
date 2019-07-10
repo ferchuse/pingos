@@ -13,13 +13,13 @@
 							<label for="existentes_contenedores">CANTIDAD</label>
 							<input placeholder="CANTIDAD" type="number" value="1" step=".01" class="form-control" id="cantidad_carrito" required name="cantidad">
 						</div>
-						<div class="form-group ">
+						<div class="form-group " hidden>
 							<label for="id_productos_carrito">ID:</label>
-							<input required readonly type="number" min="0" step=".01" class="form-control" id="id_productos_carrito" name="id_productos">
+							<input  readonly type="number" min="0" step=".01" class="form-control" id="id_productos_carrito" name="id_productos">
 						</div>
-						<div class="form-group ">
+						<div class="form-group " hidden>
 							<label for="unidad_carrito">Unidad:</label>
-							<input required readonly type="text" class="form-control" id="unidad_carrito" name="unidad">
+							<input  readonly type="text" class="form-control" id="unidad_carrito" name="unidad">
 						</div>
 						<div class="form-group ">
 							<label for="existencia_productos_inv">Descripción:</label>

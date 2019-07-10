@@ -271,7 +271,7 @@ function guardarVenta(event){
 			}).done(function(respuesta){
 			if(respuesta.estatus_venta == "success"){
 				alertify.success('Compra Guardada');
-				// window.location.href="compras_lista.php";
+				window.location.href="compras_lista.php";
 				
 				// imprimirTicket( respuesta.id_ventas)
 				

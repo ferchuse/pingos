@@ -41,7 +41,7 @@
 			<?php include("menu.php");?>
 		</div>
 		<div class="container-fluid hidden-print">
-			<form id="form_agregar_producto" class="form-inline">
+			<form id="form_agregar_producto" class="form-inline" autocomplete="off">
 				<div class="row">
 					<div class="col-md-4">
 						<label for="">Código del Producto:</label>
