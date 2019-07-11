@@ -30,6 +30,7 @@ $(document).ready(function () {
                 <td class="text-center">${value.min_productos} </td>
                 <td class="text-center">${value.existencia_productos} </td>                
                 <td class="text-center">
+                <input class="seleccionar" type="checkbox" data-id_producto="${value.id_productos}">
                 <button class="btn btn-warning btn_editar" data-id_producto="${value.id_productos}">
                     <i class="fa fa-edit"></i>
                 </button>
@@ -50,11 +51,12 @@ $(document).ready(function () {
 
             });
 
-            $('#bodyProductos').html(tableTemplate)
+            $('#bodyProductos').html(tableTemplate);
             $("#tabla_productos").stickyTableHeaders();
             $boton.prop("disabled", false)
             $icono.toggleClass("fa-search fa-spinner fa-spin");
 
+            $(".seleccionar").change(contarSeleccionados)
             //----FILTROS DE BUSCAR------
             $(".buscar_codigo").keyup(function filtro_buscar() {
                 var indice = $(this).data("indice");
@@ -386,4 +388,9 @@ function buscar(filtro, table_id, indice) {
     }
     var num_rows = $(table).find('tbody tr:visible').length;
     return num_rows;
+}
+
+function contarSeleccionados(){
+    console.log( $(".seleccionar:checked"));
+
 }
