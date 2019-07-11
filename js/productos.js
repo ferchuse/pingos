@@ -135,7 +135,7 @@ $(document).ready(function () {
                         $('h3.modal-title').text('Editar Producto');
                         $('#modal_productos').modal('show');
                     }
-                    icono.toggleClass('fa-pencil fa-spinner fa-spin fa-floppy-o');
+                    icono.toggleClass('fa-pencil fa-spinner fa-spin');
                     boton.prop('disabled', false);
                 });
 
@@ -144,7 +144,10 @@ $(document).ready(function () {
             $('.btn_carrito').click(pedirCantidad);
 
 
-        });
+        }).fail(function(xhr, error, ernum){
+					alertify.error("Ocurrio un Error" + errnum);
+					
+				});
     }
 
 

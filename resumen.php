@@ -93,8 +93,8 @@
 									Ingresos
 								</div>
 								<div style="height: 350px; overflow: auto;" class="panel-body" id="panel_ingresos">
-									<div class="table-responsive">
-										<h4>
+									<div class="table">
+										
 											<table class="table table-hover">
 												<tr>
 													<th class="text-center"> Folio</th>
@@ -119,12 +119,7 @@
 														extract($row_ventas);
 														$vale[] = $vale_ventas;
 														
-														// if (isset($_GET)){
-														// $id_ventas={$_GET[id_ventas];
-														// }
-														// else{
-														// $id_ventas=$id_ventas;
-														// }
+
 														
 														if($estatus_ventas == "CANCELADO"){
 															$color = "danger";
@@ -200,27 +195,26 @@
 												?>
 												
 											</table> 
-										</h4>
+										
 									</div>
 								</div>
 								<div class="panel-footer">
-									<h4 class=""> 
-										<table class="container">
+									 
+										<table >
 											<tr class="h3">
-												<td colspan="" class="col-sm-4 text-center">
+												<td colspan="" class="col-xs-4 text-center">
 													<b>TOTAL:</b>
 												</td>
-												<td colspan="" class="col-sm-3 text-center">
+												<td colspan="" class="col-xs-3 text-center">
 													<?php 
 														$ingresos = $efectivo +  $tarjeta;
 														echo "$".number_format($ingresos, 2);
 													?>
 												</td>
-												<td colspan="" class="col-sm-5 text-center">
-												</td>
+												
 											</tr>
 										</table>
-									</h4>
+									
 								</div>
 							</div>
 						</div>

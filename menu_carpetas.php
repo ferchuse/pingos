@@ -1,19 +1,21 @@
-<div class="row">
-	<nav class="navbar navbar-default ">
+
+<nav class="navbar navbar-default ">
+	<div class="container-fluid">
 		<div class="navbar-header">
-			<div class="row" style="width: 100%">
-				<div class="col-xs-3 text-left">
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-						<span class="sr-only">Cambiar Navegación</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand hide" href="#"></a>
-				</div>
-				<div style="margin-left:20px;" class="col-xs-9 col-md-12">
-					<a href="../index.php"><img src="../img/logo_small_edit.png" class="ml-3 img-responsive" width="60px"></a>
-				</div>
+			<div class="navbar-header">
+				
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Cambiar Navegación</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				
+				<a class="navbar-brand" href="../index.php">
+					<img src="../img/logo_small_edit.png" class="img-responsive" width="45px">
+				</a>
+				
+				
 			</div>
 			
 		</div>
@@ -139,4 +141,3 @@
 		
 	</div>
 </nav>
-</div>

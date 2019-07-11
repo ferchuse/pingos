@@ -43,6 +43,27 @@
 		
 	}
 	
+	
+	//Borrar compras detalle anterior
+	
+	
+	$consulta = "DELETE FROM compras_detalle WHERE id_compras = {$_POST["id_compras"]}";
+	
+	$result = mysqli_query($link,$consulta);
+	
+	
+	if($result){
+		$respuesta["estatus_borrar"] = "success";
+		$respuesta["mensaje_borrar"] = "Compras detalle borrado";
+	}
+	else{
+		$respuesta["estatus_borrar"] = "error";
+		$respuesta["mensaje_borrar"] = "Error en  $consulta  ".mysqli_error($link);	
+		
+	}
+	
+	//Inserta productos en compras_detalle
+	
 	foreach($listaProductos as $indice => $producto){
 		$insertarVentasDetalle = "INSERT INTO compras_detalle SET
 		id_compras = '$id_ventas',

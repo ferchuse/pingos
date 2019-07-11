@@ -21,7 +21,7 @@
 	
 ?>
 
-<div class="container hidden-print">
+<div class="container-fluid">
 	<div class="row">
 		
 		<div class="col-md-12 text-right hidden-print">
@@ -31,7 +31,7 @@
 		</div>
 		
 		<div class="col-md-12 ">
-
+			
 			<div class="row ">
 				<!-- Filtro Fecha -->
 				<div class="col-sm-9 text-left">
@@ -54,7 +54,7 @@
 					<a href="compras_nueva.php" class="btn btn-success"><i class="fas fa-plus"></i> Nueva</a>
 				</div>
 			</div>
-
+			
 		</div>
 		
 	</div>
@@ -128,11 +128,11 @@
 									</tr>
 									<?php
 									}
-									?>
-									
-									</table>
-									</h4>
-									</div>
+								?>
+								
+							</table>
+						</h4>
+					</div>
 				</div>
 				
 			</div>
