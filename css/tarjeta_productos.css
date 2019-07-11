@@ -1,0 +1,48 @@
+img {
+    width: 100%;
+}
+
+.h-row {
+    height: 25%;
+}
+
+.h-row-55 {
+    height: 60%;
+}
+
+.h-row-100 {
+    height: 100%;
+}
+
+.rosa {
+    background: pink
+}
+
+.border-pink {
+    border: 1px;
+    border-style: solid;
+    border-radius: 5px;
+    border-color: pink
+}
+
+.border-brown {
+    border: 1.3px;
+    border-style: dashed;
+    border-radius: 5px;
+    border-color: brown
+}
+
+div.rosa strong {
+    font-size: 15px;
+}
+
+.text-bold {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.text-brown {
+    color: brown;
+    font-size: 14px;
+    font-weight: bold
+}
