@@ -1,0 +1,80 @@
+body {
+    font-size: 13px;
+}
+
+.w-container {
+    min-width: 20.4cm;
+    max-width: 20.4cm;
+}
+
+.w-full {
+    max-width: 100%;
+}
+
+.w-half {
+    max-width: 50%;
+}
+
+.w-one {
+    max-width: 4.4cm;
+}
+
+.w-two {
+    max-width: 13cm;
+}
+
+.w-three {
+    max-width: 6.7cm;
+}
+
+.h-full {
+    height: 100%;
+}
+
+.h-half {
+    height: 50%;
+}
+
+.h-one {
+    height: 1.2cm;
+}
+
+.h-two {
+    height: 7.3cm;
+}
+
+.h-three {
+    height: 1.9cm;
+}
+
+.border-black {
+    border: 1px;
+    border-style: solid;
+}
+
+.border-grey {
+    border: 1px;
+    border-style: solid;
+    border-color: grey
+}
+
+.border-green {
+    border: 1px;
+    border-style: dashed;
+    border-color: green
+}
+
+.border-purple {
+    border: 1px;
+    border-style: dashed;
+    border-color: purple;
+}
+
+.bg-mark {
+    background-color: #fcf8e3;
+}
+
+.margin-top{
+    margin-top: 2mm;
+}
+
