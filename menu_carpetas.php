@@ -1,23 +1,15 @@
-
 <nav class="navbar navbar-default ">
 	<div class="container-fluid">
 		<div class="navbar-header">
-			<div class="navbar-header">
-				
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-					<span class="sr-only">Cambiar Navegación</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				
-				<a class="navbar-brand" href="../index.php">
-					<img src="../img/logo_small_edit.png" class="img-responsive" width="45px">
-				</a>
-				
-				
-			</div>
-			
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Cambiar Navegación</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="../index.php">
+				<img src="../img/logo_small_edit.png" class="img-responsive" width="45px">
+			</a>
 		</div>
 		
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -36,8 +28,7 @@
 				?>
 				
 				<?php
-					if ($_COOKIE["permiso_usuarios"] == "administrador") {
-					?>
+					if ($_COOKIE["permiso_usuarios"] == "administrador") { ?>
 					<li class=" <?php echo $menu_activo == "compras" ? "active" : ''; ?>">
 						<a href="../compras/compras_lista.php">
 							<i class="fas fa-shopping-cart"></i> Compras
@@ -84,7 +75,6 @@
 					<li class="<?php echo $menu_activo == "resumen" ? "active" : ''; ?>">
 						<a href="../resumen.php">
 							<i class="fas fa-cash-register"></i> Corte de Caja
-							<!-- <i class="fas fa-cut"></i> Corte de Caja -->
 						</a>
 					</li>
 					
@@ -99,45 +89,44 @@
 					?>
 					<li class="dropdown <?php echo $menu_activo == "control" ? "active" : ''; ?>">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-						<i class="fas fa-cog"></i></i> Configuración <strong class="caret"></strong>
+							<i class="fas fa-cog"></i> Configuración <strong class="caret"></strong>
+						</a>
+						<ul class="dropdown-menu">
+							<li>
+								<a href="../usuarios.php"><i class="fa fa-user-plus "></i> Usuarios</a>
+							</li>
+							<li>
+								<a href="#">Versión 25-JUN-2019</a>
+							</li>
+						</ul>
+					</li>
+					
+					<?php
+					}
+				?>
+				<li hidden class="hidden">
+					<a href="#">
+						<i class="fas fa-clock"></i> Turno:
+						<span id="turno_span"></span>
+						<input type="hidden" id="id_turnos">
+					</a>
+				</li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						<i class="fa fa-user"></i>
+						<span id="menu_nombre_usuario">
+							<?php echo isset($_COOKIE["nombre_usuarios"]) ? $_COOKIE["nombre_usuarios"] : "" ?>
+						</span>
+						<strong class="caret"></strong>
+						<input type="hidden" id="id_usuarios" value="<?php echo isset($_COOKIE["id_usuarios"]) ? $_COOKIE["id_usuarios"] : ""; ?>">
 					</a>
 					<ul class="dropdown-menu">
 						<li>
-							<a href="../usuarios.php"><i class="fa fa-user-plus "></i> Usuarios</a>
-						</li>
-						<li>
-							<a href="#">Versión 25-JUN-2019</a>
+							<a href="../login/logout.php"><i class="fas fa-sign-out-alt"></i> Salir</a>
 						</li>
 					</ul>
 				</li>
-				
-				<?php
-				}
-			?>
-			<li hidden class="hidden">
-				<a href="#">
-					<i class="fas fa-clock"></i> Turno:
-					<span id="turno_span"></span>
-					<input type="hidden" id="id_turnos">
-					
-				</a>
-			</li>
-			<li class="dropdown">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-					<i class="fa fa-user"></i>
-					<span id="menu_nombre_usuario">
-						<?php echo isset($_COOKIE["nombre_usuarios"]) ? $_COOKIE["nombre_usuarios"] : "" ?>
-					</span>
-					<strong class="caret"></strong>
-					<input type="hidden" id="id_usuarios" value="<?php echo isset($_COOKIE["id_usuarios"]) ? $_COOKIE["id_usuarios"] : ""; ?>">
-				</a>
-				<ul class="dropdown-menu">
-					<li>
-						<a href="../login/logout.php"><i class="fas fa-sign-out-alt"></i> Salir</a>
-					</li>
-				</ul>
-			</li>
-		</ul>
-		
+			</ul>
+		</div>
 	</div>
 </nav>
