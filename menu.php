@@ -43,7 +43,7 @@
 								<a href="reportes.php"><i class="fas fa-chart-bar"></i> Ventas Por Día</a>
 							</li>
 							<li>
-								<a href="reportes_movimientos.php"><i class="fas fa-chart-bar"></i> Movimientos</a>
+								<a href="inventarios/movimientos.php"><i class="fas fa-chart-bar"></i> Movimientos</a>
 							</li>
 						</ul>
 					</li>
