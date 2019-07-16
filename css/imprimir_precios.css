@@ -2,19 +2,34 @@ img {
     width: 100%;
 }
 
+.etiqueta {
+    font-size: small;
+    vertical-align: center;
+}
+
 .h-row {
     height: 25%;
 }
 
+.h-row-20 {
+    height: 20%;
+}
+
+.h-row-40 {
+    max-height: 30%;
+    height: 30%;
+}
+
 .h-row-55 {
-    height: 60%;
+    height: 80%;
 }
 
 .h-row-100 {
+    max-height: 100%;
     height: 100%;
 }
 
-.rosa {
+.bg-pink {
     background: pink
 }
 
@@ -30,6 +45,12 @@ img {
     border-style: dashed;
     border-radius: 5px;
     border-color: brown
+}
+
+.border-red {
+    border: 1px;
+    border-style: dashed;
+    border-color: red
 }
 
 div.rosa strong {
