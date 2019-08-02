@@ -14,76 +14,33 @@ function listaProductos() {
 			bgClass = Number(value.existencia_productos) < Number(value.min_productos) ? "bg-danger" : " ";
 			
 			tableTemplate += `
-		<div class="row ${bgClass} mb-3">
-			<div class="col-md-3 visible-sm visible-md visible-lg visible-xl text-center">
-					${value.descripcion_productos}
-			</div>
-			<div class="row ">
-				<div class="col-xs-12  visible-xs bg-primary text-center">${value.descripcion_productos}</div>
-			</div>
-			</div>
-			<div class="col-md-1">
-				<div class="row">
-					<div class="col-xs-5 text-center visible-xs font-weight-bolder">Departamento</div>
-					<div class="col-xs-7 col-md-1 text-center">${value.nombre_departamentos}</div>
-				</div>
-			</div>
-			<div class="col-md-1">
-				<div class="row">
-					<div class="col-xs-5 text-center visible-xs font-weight-bolder">Costo de Compra</div>
-					<div class="col-xs-7 col-md-1 text-center">${value.costo_proveedor}</div>
-				</div>
-			</div>
-			<div class="col-md-1">
-				<div class="row">
-					<div class="col-xs-5 text-center visible-xs font-weight-bolder">Ganancia</div>
-					<div class="col-xs-7 col-md-1 text-center">${value.ganancia_menudeo_porc}</div>
-				</div>
-			</div>
-			<div class="col-md-1">
-				<div class="row">
-					<div class="col-xs-5 text-center visible-xs font-weight-bolder">Precio Venta</div>
-					<div class="col-xs-7 col-md-1 text-center">${value.precio_menudeo}</div>
-				</div>
-			</div>
-			<div class="col-md-1">
-				<div class="row">
-					<div class="col-xs-5 text-center visible-xs font-weight-bolder">Precio Mayoreo</div>
-					<div class="col-xs-7 col-md-1 text-center">${value.precio_mayoreo}</div>
-				</div>
-			</div>
-			<div class="col-md-1">
-				<div class="row">
-					<div class="col-xs-5 text-center visible-xs font-weight-bolder">Mínimo</div>
-					<div class="col-xs-7 col-md-1 text-center">${value.min_productos}</div>
-				</div>
-			</div>
-			<div class="col-md-1">
-				<div class="row">
-					<div class="col-xs-5 text-center visible-xs font-weight-bolder">Existencias</div>
-					<div class="col-xs-7 col-md-1 text-center">${value.existencia_productos}</div>
-				</div>
-			</div>
-			<div class="col-md-2 visible-sm visible-md visible-lg visible-xl">
-				<div class="row">
-					<div class="col-md-12 text-center">
-						<input form='form_imprimir_precios' name="id_productos[]" class="seleccionar" type="checkbox"
-							value="${value.id_productos}">
-						<button class="btn btn-warning btn_editar" data-id_producto="${value.id_productos}">
-							<i class="fa fa-edit"></i>
-						</button>
-						<button class="btn btn-danger btn_eliminar" data-id_producto="${value.id_productos}">
-							<i class="fa fa-trash"></i>
-						</button>
-						<button class="btn btn-success btn_carrito" data-id_productos="${value.id_productos}"
-							data-descripcion="${value.descripcion_productos}" data-precio="${value.costo_proveedor}"
-							data-unidad="${value.unidad_productos}">
-							<i class="fa fa-cart-plus"></i>
-						</button>
-					</div>
-				</div>
-			</div>
-		</div>  
+			<tr class="${bgClass}">
+			<td class="text-center">${value.descripcion_productos}</td>
+			<td class="text-center">${value.nombre_departamentos} </td>
+			<td class="text-center">${value.costo_proveedor} </td>
+			<td class="text-center">${value.ganancia_menudeo_porc} </td>
+			<td class="text-center">${value.precio_menudeo} </td>
+			<td class="text-center">${value.precio_mayoreo} </td>                
+			<td class="text-center">${value.min_productos} </td>
+			<td class="text-center">${value.existencia_productos} </td>                
+			<td class="text-center">
+			<input form='form_imprimir_precios' name="id_productos[]" class="seleccionar" type="checkbox" value="${value.id_productos}">
+			<button class="btn btn-warning btn_editar" data-id_producto="${value.id_productos}">
+			<i class="fa fa-edit"></i>
+			</button>
+			<button class="btn btn-danger btn_eliminar" data-id_producto="${value.id_productos}">
+			<i class="fa fa-trash"></i>
+			</button>
+			<button class="btn btn-success btn_carrito" 
+			data-id_productos="${value.id_productos}"
+			data-descripcion="${value.descripcion_productos}"
+			data-precio="${value.costo_proveedor}"
+			data-unidad="${value.unidad_productos}"
+			>
+			<i class="fa fa-cart-plus"></i>
+			</button>
+			</td>
+			</tr>  
 			`;
 			
 		});

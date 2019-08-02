@@ -2,10 +2,7 @@
 var producto_elegido ;
 
 $(document).ready( function onLoad(){
-	$('#mayoreo').change(aplicarMayoreo);
 	$('.bg-info').keydown(navegarFilas);
-	
-	
 	
 	$('#form_granel').submit(agregarGranel);
 	$('#form_agregar_producto').submit(function(event){
@@ -13,7 +10,7 @@ $(document).ready( function onLoad(){
 		event.preventDefault();
 	});
 	
-	$(document).on('keydown', FunctionKeys);
+	$(document).on('keydown', disableFunctionKeys);
 	
 	alertify.set('notifier','position', 'top-right');
 	
@@ -167,14 +164,6 @@ function buscarProducto(campobd,tablabd,id_campobd){
 function agregarProducto(producto){
 	console.log("agregarProducto()", producto);
 	
-	if($("#mayoreo").prop("checked")){
-		precio = producto['precio_mayoreo'];
-	}
-	else{
-		precio = producto['precio_menudeo'];
-		
-	}
-	
 	let articulos = $("#tabla_venta tbody tr").size();
 	
 	//Buscar por id_productos, si se encuentra agregar 1 unidad sino agregar nuevo producto
@@ -184,7 +173,7 @@ function agregarProducto(producto){
 	
 	if($existe.length > 0){
 		console.log("El producto ya existe");
-		var cantidad_anterior = Number($existe.closest("tr").find(".cantidad").val());
+		let cantidad_anterior = Number($existe.closest("tr").find(".cantidad").val());
 		console.log("cantidad_anterior", cantidad_anterior)
 		cantidad_nueva = cantidad_anterior+ 1;
 		console.log("cantidad_nueva", cantidad_nueva)
@@ -197,20 +186,19 @@ function agregarProducto(producto){
 			producto['cantidad'] = 1;
 		}
 		console.log("El producto no existe, agregarlo a la tabla");
-		$fila_producto = `<tr >
+		$fila_producto = `<tr class="bg-info">
 		<td class="col-sm-1">
 		<input hidden class="id_productos"  value="${producto['id_productos']}">
 		
 		<input hidden class="descripcion" value='${producto['descripcion_productos']}'>
 		<input hidden class="precio_mayoreo" value='${producto['precio_mayoreo']}'>
-		<input hidden class="precio_menudeo" value='${producto['precio_menudeo']}'>
 		<input hidden class="ganancia_porc" value='${producto['ganancia_menudeo_porc']}'>
 		<input hidden class="costo_proveedor" value='${producto['costo_proveedor']}'>
 		<input type="number"  step="any" class="cantidad form-control text-right"  value='${producto['cantidad']}'>
 		</td>
 		<td class="text-center">${producto['unidad_productos']}</td>
 		<td class="text-center">${producto['descripcion_productos']}</td>
-		<td class="col-sm-1"><input readonly type="number" class='precio form-control' value='${precio}'> </td>
+		<td class="col-sm-1"><input readonly type="number" class='precio form-control' value='${producto['precio_menudeo']}'> </td>
 		<td class="col-sm-1"><input readonly type="number" class='importe form-control text-right' > </td>
 		<td class="col-sm-1">	
 		<input class="existencia_anterior form-control" readonly  value='${producto['existencia_productos']}'> 
@@ -226,14 +214,6 @@ function agregarProducto(producto){
 		
 		$("#tabla_venta tbody").append($fila_producto);
 		
-		$.getScript('https://luke-chang.github.io/js-spatial-navigation/spatial_navigation.js', function() {
-			$('#tabla_venta tbody tr')
-			.SpatialNavigation()
-			.focus(function() { $(this).addClass("bg-info"); })
-			.blur(function() { $(this).removeClass("bg-info");  })
-			.first()
-			.focus();
-		});
 		
 		
 		//Asigna Callbacks de eventos
@@ -404,7 +384,7 @@ function afterPrint() {
 }
 
 
-function FunctionKeys(e) {
+function disableFunctionKeys(e) {
 	var functionKeys = new Array(112, 113, 114, 115, 117, 118, 119, 120, 121, 122, 123);
 	if (functionKeys.indexOf(e.keyCode) > -1 || functionKeys.indexOf(e.which) > -1) {
 		e.preventDefault();
@@ -413,32 +393,11 @@ function FunctionKeys(e) {
 		
 	}
 	
-	if(e.key == 'ArrowUp'){
-		
-		console.log("ArrowUp");
-		
-		// $("#tabla_venta tr.bg-info").toggleClass("bg-info").prev().toggleClass("bg-info");
-	}
-	if(e.key == 'ArrowDown'){
-		
-		console.log("ArrowDown");
-		
-		// $("#tabla_venta tr.bg-info").toggleClass("bg-info").next().toggleClass("bg-info");
-	}
-	
 	if(e.key == 'F12'){
 		
 		console.log("F12");
 		
 		$("#cerrar_venta").click()
-	}
-	if(e.key == 'Delete'){
-		
-		console.log("Delete");
-		
-		$("#tabla_venta tr.bg-info").remove();
-		sumarImportes();
-		$("")
 	}
 	
 	if(e.key == 'F10'){
@@ -448,7 +407,7 @@ function FunctionKeys(e) {
 	
 	if(e.key == 'F11'){
 		console.log("F11");
-		$("#mayoreo").click();
+		aplicarMayoreo();
 	}
 	
 	if(e.key == 'Escape'){
@@ -461,18 +420,14 @@ function FunctionKeys(e) {
 };
 
 function aplicarMayoreo(){
-	var $precio;
+	
 	console.log("aplicarMayoreo");
 	
-	$("#tabla_venta tbody tr").each(function(index, item){
-		if($("#mayoreo").prop("checked")){
-			$precio =  $(item).find(".precio_mayoreo").val();
-		}
-		else{
-			$precio =  $(item).find(".precio_menudeo").val();
-		}
-		$(item).find(".precio").val($precio);
-	});
+	let $fila = $("#tabla_venta tbody tr").last();
+	
+	let $precio_mayoreo =  $fila.find(".precio_mayoreo").val();
+	
+	$(".precio").last().val( $precio_mayoreo);
 	
 	sumarImportes();
 }
