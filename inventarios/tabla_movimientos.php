@@ -57,9 +57,20 @@
 	AND tipo_movimiento = 'SALIDA'
 	GROUP BY id_productos
 	) AS t_salidas USING (id_productos)
-	WHERE
-	id_departamentos ={$_POST['id_departamentos']}
-	ORDER BY
+	WHERE 1";
+	
+	if($_POST['id_departamentos'] != ''){
+		$consulta_movimientos .= "
+		AND
+		id_departamentos = '{$_POST['id_departamentos']}'";
+	}
+	if($_POST['id_productos'] != ''){
+		$consulta_movimientos .= "
+		AND
+		id_productos ='{$_POST['id_productos']}'";
+	}
+	
+	$consulta_movimientos .= " ORDER BY
 	{$_POST['sort']} DESC";
 	
 	
@@ -84,10 +95,12 @@
 	LEFT JOIN departamentos USING(id_departamentos)
 	WHERE
 	DATE(fecha_entradas) BETWEEN '{$_POST['fecha_inicio']}'
-	AND '{$_POST['fecha_fin']}'
-	AND id_departamentos ={$_POST['id_departamentos']}
-	ORDER BY fecha_entradas
-	";
+	AND '{$_POST['fecha_fin']}'";
+	if($_POST['id_departamentos'] != ''){
+		$consulta_entradas .= " AND
+		id_departamentos = '{$_POST['id_departamentos']}'";
+	}
+	$consulta_entradas .= " ORDER BY fecha_entradas";
 	
 	
 	// $result_entradas = mysqli_query($link,$consulta_entradas) or die ("<pre>Error en $consulta_entradas". mysqli_error($link). "</pre>");
@@ -124,6 +137,10 @@
 		
 	}
 ?>
+
+<pre class="hidden">
+	<?php echo $consulta_movimientos;?>
+</pre>
 <?php 
 	if(mysqli_num_rows($result_movimientos) < 1){
 	?>
@@ -167,8 +184,8 @@
 							<tr class="text-center">
 								
 								<td><?php echo $fila_movimientos["descripcion_productos"];?></td>
-								<td><?php echo $fila_movimientos["entradas"] == 0.000 ? "-" : $fila_movimientos["entradas"] ;?></td>
-								<td><?php echo $fila_movimientos["salidas"] == 0.000 ? "-" : $fila_movimientos["salidas"] ;?></td>
+								<td><?php echo $fila_movimientos["entradas"] == '0.000' ? "-" : $fila_movimientos["entradas"] ;?></td>
+								<td><?php echo $fila_movimientos["salidas"] == '0.000' ? "-" : $fila_movimientos["salidas"] ;?></td>
 								
 							</tr>
 							<?php
