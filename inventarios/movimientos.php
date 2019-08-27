@@ -36,7 +36,7 @@
 			</div>
 			<div class="row">
 				<div class="col-md-12">
-					<form id="form_reportes" class="form-inline">
+					<form id="form_reportes" class="form-inline" autocomplete="off">
 						<div class="form-group">
 							<label for="fecha_inicio">Desde:</label>
 							<input type="date" name="fecha_inicio" id="fecha_inicio" class="form-control" value="<?php echo $fa_inicial;?>">
@@ -47,9 +47,15 @@
 						</div>
 						<div class="form-group mr-2">
 							<label for="id_departamentos">Categoria:</label>
-							<?php echo generar_select($link, "departamentos", "id_departamentos", "nombre_departamentos", false, false, true)?>
+							<?php echo generar_select($link, "departamentos", "id_departamentos", "nombre_departamentos", true, false, false)?>
 						</div>
 						<input type="hidden" id="sort" name="sort" value="descripcion_productos">
+						<input type="hidden" id="id_productos" name="id_productos" value="">
+						
+						<div class="form-group">
+							<label for="fecha_fin">Producto:</label>
+							<input type="text" name="" id="descripcion_productos" class="form-control" >
+						</div>
 						<button type="submit" class="btn btn-success" id="btn_buscar">
 							<i class="fa fa-search"></i> Buscar
 						</button>

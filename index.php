@@ -41,8 +41,9 @@
 			<?php include("menu.php");?>
 		</div>
 		<div class="container-fluid hidden-print">
-			<form id="form_agregar_producto" class="form-inline" autocomplete="off">
-				<div class="row">
+			
+			<div class="row">
+				<form id="form_agregar_producto" class="form-inline" autocomplete="off">
 					<div class="col-md-4">
 						<label for="">Código del Producto:</label>
 						
@@ -55,13 +56,17 @@
 							<input id="buscar_producto"   type="text" class="form-control" size="50">
 						</div>
 					</div>
-					<div class="col-md-4">
-						<div class="form-group">
-							<button class="btn btn-default" id="btn_mayoreo">F11 Mayoreo</button>
-						</div>
+				</form>
+				<div class="col-md-4">
+					<div class="form-group">
+						<label>
+							<input type="checkbox" id="mayoreo">
+							F11 Mayoreo
+						</label>
 					</div>
 				</div>
-			</form>
+			</div>
+			
 			
 			<div class="row">
 				<div class="col-md-12">
@@ -69,13 +74,13 @@
 						<table id="tabla_venta" class="table table-bordered table-condensed">
 							<thead class="bg-success">
 								<tr>
-									<th class="text-center">Cantidad</th>
-									<th class="text-center">Unidad</th>
-									<th class="text-center">Descripcion del Producto</th>
-									<th class="text-center">Precio Unitario</th>
-									<th class="text-center">Importe</th>
-									<th class="text-center">Existencia</th>
-									<th class="text-center">Acciones</th>
+								<th class="text-center">Cantidad</th>
+								<th class="text-center">Unidad</th>
+								<th class="text-center">Descripcion del Producto</th>
+								<th class="text-center">Precio Unitario</th>
+								<th class="text-center">Importe</th>
+								<th class="text-center">Existencia</th>
+								<th class="text-center">Acciones</th>
 								</tr>
 							</thead>
 							<tbody >
@@ -91,7 +96,7 @@
 				<div class="row">
 					<div class="col-sm-9 text-right">
 						<button class="btn btn-info btn-lg"  id="nueva_venta" onclick="window.location.reload(true);">
-								Nueva Venta
+							Nueva Venta
 						</button>
 						<button class="btn btn-success btn-lg" FORM="" id="cerrar_venta">F12 - Cobrar</button>
 					</div>
