@@ -26,7 +26,22 @@
 					<?php
 					}
 				?>
-				
+					<?php
+					if ($_COOKIE['nombre_usuarios'] == 'VANESSA') { 
+					?>
+					<li class="dropdown <?php echo $menu_activo == "reportes" ? "active" : ''; ?>">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							<i class="fas fa-chart-bar"></i> Reportes <strong class="caret"></strong>
+						</a>
+						<ul class="dropdown-menu">
+							<li>
+								<a href="inventarios/movimientos.php"><i class="fas fa-chart-bar"></i> Movimientos</a>
+							</li>
+						</ul>
+					</li>
+				<?php
+					}
+				?>
 				<?php
 					if ($_COOKIE["permiso_usuarios"] == "administrador") { ?>
 					<li class=" <?php echo $menu_activo == "compras" ? "active" : ''; ?>">

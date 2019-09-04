@@ -98,6 +98,7 @@
 										}
 										
 									?>
+									
 									<tr class="<?php echo $color; ?>">
 										<td class="text-center"><?php echo $id_compras; ?></td>
 										<td class="text-center"><?php echo date("d/m/Y", strtotime($fecha_compras)); ?></td>
@@ -134,7 +135,9 @@
 						</h4>
 					</div>
 				</div>
-				
+				<pre>
+					<?php echo $consultaVentas?>
+				</pre>
 			</div>
 		</div>
 	</form>
