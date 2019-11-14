@@ -7,7 +7,6 @@ $(document).ready(function(){
 		var formulario = $(this).serialize();
 		$.ajax({
 			url: 'control/reporte.php',
-			method: 'POST',
 			dataType: 'HTML',
 			data: formulario
 		}).done(function(respuesta){
