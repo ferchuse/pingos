@@ -1,0 +1,62 @@
+body {
+    color: grey;
+    font-size: 30px;
+}
+
+.container {
+    font-size: .75em;
+}
+
+.seccion {
+    font-size: 1.05em;
+    color: black;
+    text-transform: uppercase;
+}
+
+.filtros {
+    color: black;
+    font-size: .80em;
+}
+
+.encabezado {
+    font-size: 1em;
+    color: black;
+    font-weight: bold;
+}
+
+.mensaje {
+    height: 2em;
+    color: #0c5460;
+    font-size: .80em;
+    background: #d1ecf1;
+    border: #bee5eb solid .5px;
+    border-radius: 5px;
+    padding-left: 25px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+.balance {
+    color: black
+}
+
+.cantidad {
+    font-size: 1em;
+    overflow: hidden;
+}
+
+.linea-dashed {
+    border-width: 1px;
+    border-color: #cecece;
+    border-style: dashed;
+}
+
+.linea-solid {
+    border-width: .5px;
+    border-color: #cecece;
+    border-style: solid;
+}
+
+.bg-aqua {
+    background: #e9fff8;
+}

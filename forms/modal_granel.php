@@ -1,5 +1,5 @@
 <form id="form_granel" autocomplete="off">
-	<div id="modal_granel" class="modal fade" role="dialog">
+	<div id="modal_granel" class="modal " role="dialog">
 		<div class="modal-dialog modal-md">
 			
 			<!-- Modal content-->
@@ -17,7 +17,7 @@
 					</div>
 					<div class="form-group col-sm-12">
 						<label for="precio">1 Kg:</label>
-						<input class="form-control" name="precio" id="precio">
+						<input class="form-control" name="precio" id="precio" readonly>
 					</div>
 					<div class="form-group col-sm-6">
 						<label for="unidad_granel">Peso:</label>
