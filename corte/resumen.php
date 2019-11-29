@@ -175,7 +175,7 @@
 			<hr>
 			
 			<!-- "Ingresos" -->
-			<form class="" id="lista_egresos">
+			<form class="" id="">
 				<div class="row">
 					<div class="col-sm-6">
 						<div class="panel panel-info hidden-print" id="head_ingresos">
@@ -193,7 +193,7 @@
 								<div id="home" class="tab-pane fade in active">
 									<div style="height: 350px; overflow: auto;" class="panel-body" id="panel_ventas">
 										<div class="row text-center">
-											<div class="col-xs-1"> Turno</div>
+											<div class="col-xs-1"> Usuario</div>
 											<div class="col-xs-2"> Folio</div>
 											<div class="col-xs-2"> Hora</div>
 											<div class="col-xs-2"> Total</div>
@@ -228,7 +228,7 @@
 												
 											?>
 											<div class="row <?php echo $fondo; ?> text-center focusable" style="border-bottom: solid 1px; margin-bottom: 10px;">
-												<div class="col-xs-1 text-center"><?php echo $id_turnos; ?></div>
+												<div class="col-xs-1 text-center"><?php echo $nombre_usuarios; ?></div>
 												<div class="col-xs-2"><?php echo $id_ventas; ?></div>
 												<div class="col-xs-2 text-center"><?php echo date("H:i", strtotime($hora_ventas)); ?></div>
 												<div class="col-xs-2"><?php echo "$" . $total_ventas ?></div>
