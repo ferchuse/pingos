@@ -67,7 +67,7 @@
 					</div>
 				</form>
 				<?php
-				// if ($_COOKIE["permiso_usuarios"] != "mostrador") { 
+					// if ($_COOKIE["permiso_usuarios"] != "mostrador") { 
 					if(false){
 					?>
 					<div class="col-md-4">
@@ -225,14 +225,11 @@
 			<div class="sticky-footer">
 				
 				
-				<?php if ($_COOKIE["permiso_usuarios"] != "mostrador") { ?>
-					<button class="btn btn-success btn-lg" FORM="" id="cerrar_venta">
-						F12 - Cobrar
-					</button>
-					<?php
-						
-					}
-				?>
+				
+				<button class="btn btn-success btn-lg" FORM="" id="cerrar_venta">
+					F12 - Cobrar
+				</button>
+				
 			</div>
 		</div>
 		
