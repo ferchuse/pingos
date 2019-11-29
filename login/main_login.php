@@ -1,4 +1,8 @@
 <?php
+	
+	include("../conexi.php");
+	$link = Conectarse();
+	
 	if(isset($_GET["redirect_url"])){
 		
 		$redirect_url =$_GET["redirect_url"]; 
@@ -9,9 +13,6 @@
 	}
 	
 	
-	include("../conexi.php");
-	$link = Conectarse();
-	
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -21,18 +22,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 		
-   
+		
 		
 		<link href="../css/bootstrap.min.css" rel="stylesheet" media="all">
 		<link href="../css/alertify.min.css" rel="stylesheet" media="all"/>
-		<link href="../css/common.css" rel="stylesheet" media="all"  >
-		<link href="../css/imprimir_venta.css" rel="stylesheet" media="all">
 		<link href="../css/all.min.css" rel="stylesheet" >
 		<link href="login.css" rel="stylesheet" >
-		
-		<?php include("../scripts_carpetas.php")?>
-    <script type="text/javascript" src="login.js"></script>
-		
+	
 	</head>
 	
 	<body>
@@ -47,7 +43,7 @@
 							<div id="login_logo">
 								
 								
-								<img class=" img-responsive" src="../img/logo.jpg">
+								<img class=" img-responsive" src="logo_login.png">
 							</div>
 							
 							<?php 
@@ -79,11 +75,19 @@
 									?>
 								</select>
 							</div>
-							<input type="password" name="password" class="form-control " id="password"
-							placeholder="Contraseña" required="" />
-							
-							
-							<div class="pwstrength_viewport_progress"></div>
+							<div class="form-group">
+								<input type="password" name="password" class="form-control " id="password"
+								placeholder="Contraseña" required="" />
+							</div>
+							<div class="form-group">
+								<label for="password">Ultimo Turno:</label>
+								<input type="number" readonly name="turno" class="form-control col-sm-6" id="turno" placeholder="" required="" />
+								<input class="form-control col-sm-6" readonly id="cerrado" name="cerrado">
+							</div>
+							<div class="form-group">
+								<label for="password">Efectivo Inicial:</label>
+								<input type="number" value="0" step="0.01" name="efectivo_inicial" class="form-control " id="efectivo_inicial" placeholder="Efectivo inicial" required="" />
+							</div>
 							
 							
 							<button type="submit" id="btn_login" name="iniciar" class="btn btn-lg btn-primary btn-block">
@@ -97,6 +101,11 @@
 				</div>
 			</div>
 		</div>
+		
+			
+		<?php include("../scripts_carpetas.php")?>
+    <script type="text/javascript" src="login.js?v=<?= date("d-m-Y-H-i-s")?>"></script>
+		
 	</body>
 	
 </html>
