@@ -66,7 +66,10 @@
 						</div>
 					</div>
 				</form>
-				<?php if ($_COOKIE["permiso_usuarios"] != "mostrador") { ?>
+				<?php
+				// if ($_COOKIE["permiso_usuarios"] != "mostrador") { 
+					if(false){
+					?>
 					<div class="col-md-4">
 						<div class="form-group">
 							
@@ -256,7 +259,7 @@
 			});
 		</script>
 		
-		<script src="ventas/ventas.js"></script>
+		<script src="ventas/ventas.js?v=<?= date("d-m-Y-H-i-s")?>"></script>
 		<!--Start of Tawk.to Script-->
 		<script type="text/javascript">
 			var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();

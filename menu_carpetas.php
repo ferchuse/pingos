@@ -82,6 +82,9 @@
 							<li>
 								<a href="../proveedores.php"><i class="fas fa-file-alt"></i> Proveedores</a>
 							</li>
+							<li>
+								<a href="../catalogos/egresos.php"><i class="fas fa-file-alt"></i> Egresos</a>
+							</li>
 						</ul>
 					</li>
 					

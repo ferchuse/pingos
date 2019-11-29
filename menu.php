@@ -69,6 +69,7 @@
 						</a>
 					</li>
 					
+					
 					<li class="dropdown <?php echo $menu_activo == "catalogos" ? "active" : ''; ?>">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 							<i class="fas fa-file-alt"></i> Catálogos <strong class="caret"></strong>
@@ -79,6 +80,9 @@
 							</li>
 							<li>
 								<a href="proveedores.php"><i class="fas fa-file-alt"></i> Proveedores</a>
+							</li>
+							<li>
+								<a href="catalogos/egresos.php"><i class="fas fa-file-alt"></i> Egresos</a>
 							</li>
 						</ul>
 					</li>
