@@ -40,7 +40,7 @@
 							</li>
 						</ul>
 					</li>
-				<?php
+					<?php
 					}
 				?>
 				
@@ -116,7 +116,7 @@
 								<a href="../usuarios.php"><i class="fa fa-user-plus "></i> Usuarios</a>
 							</li>
 							<li>
-								<a href="#">Versión 25-JUN-2019</a>
+								<a target="_blank"  href="../funciones/respaldar.php"><i class="fa fa-business-time "></i> Respaldar</a>
 							</li>
 						</ul>
 					</li>
