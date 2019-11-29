@@ -54,7 +54,7 @@ function guardarIngreso(event, value){
 		}).done( function(respuesta){
 		if(respuesta.estatus == 'success'){
 			alertify.success('Guardado correctamente');
-			window.location.reload(true);
+			// window.location.reload(true);
 		}
 		else{
 			alertify.error('Ha ocuurido un error');

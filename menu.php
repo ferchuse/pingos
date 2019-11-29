@@ -122,11 +122,9 @@
 					<?php
 					}
 				?>
-				<li hidden class="hidden">
-					<a href="#">
-						<i class="fas fa-clock"></i> Turno:
-						<span id="turno_span"></span>
-						<input type="hidden" id="id_turnos">
+				<li >
+					<a href="index.php">
+						<i class="fas fa-clock"></i> Turno <?php echo $_COOKIE["id_turnos"];?>
 					</a>
 				</li>
 				<li class="dropdown">
