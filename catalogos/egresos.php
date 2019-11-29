@@ -35,7 +35,7 @@
 	
 	<body class="egresos">
 		<!-- "Menú" -->
-		<?php include("menu.php"); ?>
+		<?php include("../menu_carpetas.php"); ?>
 		
 		<!-- Encabezado -->
 		<section class="encabezado container">
