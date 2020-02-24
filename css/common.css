@@ -82,8 +82,7 @@
 		display: block;
 	}
 	.ticket {
-		font-size: 10px !important;
-		max-width : 8cm;
+	
 	}
 	a[href]:after {
 		content:none;
