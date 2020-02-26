@@ -1,4 +1,4 @@
-
+var printService = new WebSocketPrinter();
 var producto_elegido ;
 
 function round(value, step) {
@@ -184,7 +184,8 @@ function cobrarEImprimir(evt){
 	evt.type = "submit";
 	guardarVenta(evt).done(function(respuesta){
 		
-		imprimirTicket(respuesta.id_ventas);
+		imprimirESCPOS(respuesta.id_ventas);
+		// imprimirTicket(respuesta.id_ventas);
 	})
 	
 }
@@ -835,3 +836,35 @@ function calculaCambio(){
 	let cambio = pago - efectivo;
 	$("#cambio").val(cambio);
 }	
+
+function imprimirESCPOS(id_ventas){
+	console.log("imprimirESCPOS()");
+	var id_registro = $(this).data("id_registro");
+	// var url = $(this).data("url");
+	var boton = $(this); 
+	var icono = boton.find("fas");
+	
+	boton.prop("disabled", true);
+	icono.toggleClass("fa-print fa-spinner fa-spin");
+	
+	$.ajax({
+		url: "ventas/imprimir_ticketpos.php" ,
+		data:{
+			"id_ventas" : id_ventas
+		}
+		}).done(function (respuesta){
+		
+		// $("#ticket").html(respuesta); 
+		
+		
+		printService.submit({
+			'type': 'LABEL',
+			'raw_content': respuesta
+		});
+		}).always(function(){
+		
+		boton.prop("disabled", false);
+		icono.toggleClass("fa-print fa-spinner fa-spin");
+		
+	});
+}
