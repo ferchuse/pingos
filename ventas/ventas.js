@@ -182,10 +182,15 @@ function renderProductos(tab_index, venta){
 function cobrarEImprimir(evt){
 	evt.data = {"imprimir": true};
 	evt.type = "submit";
+	
+	$("#imprimir").prop("disabled", true);
+	$("#imprimir").find(".fas").toggleClass("fa-print fa-spinner fa-spin");
+	console.log("disabled");
 	guardarVenta(evt).done(function(respuesta){
 		
 		imprimirESCPOS(respuesta.id_ventas);
-		// imprimirTicket(respuesta.id_ventas);
+		$("#imprimir").prop("disabled", false);
+		$("#imprimir").find(".fas").toggleClass("fa-print fa-spinner fa-spin");
 	})
 	
 }
