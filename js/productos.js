@@ -39,6 +39,11 @@ function listaProductos() {
 			>
 			<i class="fa fa-cart-plus"></i>
 			</button>
+			<button class="btn btn-info btn_historial" 
+			data-id_productos="${value.id_productos}"
+			>
+			<i class="fa fa-clock"></i>
+			</button>
 			</td>
 			</tr>  
 			`;
@@ -57,6 +62,7 @@ function listaProductos() {
 		$('.btn_eliminar').click( confirmaEliminar);
 		$('.btn_editar').click( cargarRegistro);
 		$('.btn_carrito').click(pedirCantidad);
+		$('.btn_historial').click(mostrarHistorial);
 		
 		
 		}).fail(function(xhr, error, ernum){
@@ -64,6 +70,28 @@ function listaProductos() {
 		
 	});
 }
+function mostrarHistorial() {
+	// $('#form_productos')[0].reset();
+	var boton = $(this);
+	var icono = boton.find('.fa');
+	icono.toggleClass('fa-clock fa-spinner fa-spin');
+	boton.prop('disabled', true);
+	// var id_productos = 
+	$.ajax({
+		url: 'productos/modal_historial.php',
+		method: 'get',
+		
+		data: { 'id_productos': boton.data('id_productos') }
+		}).done(function (respuesta) {
+		
+		$('#historial').html(respuesta);
+		$('#modal_historial').modal('show');
+		
+		icono.toggleClass('fa-clock fa-spinner fa-spin');
+		boton.prop('disabled', false);
+	});
+}
+
 function buscarCodigo() {
 	var indice = $(this).data("indice");
 	var valor_filtro = $(this).val();
@@ -81,10 +109,10 @@ function buscarDescripcion() {
 	var valor_filtro = $(this).val();
 	var num_rows = buscar(valor_filtro, 'tabla_productos', indice);
 	if (num_rows == 0) {
-		$('#mensaje').html("<div class='alert alert-warning text-center'><strong>No se ha encontrado.</strong></div>");
-		} else {
-		$('#mensaje').html('');
-	}
+	$('#mensaje').html("<div class='alert alert-warning text-center'><strong>No se ha encontrado.</strong></div>");
+	} else {
+	$('#mensaje').html('');
+}
 }
 
 

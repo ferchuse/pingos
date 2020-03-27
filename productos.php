@@ -104,11 +104,14 @@
 		</div>
 		<form id="form_imprimir_precios" action="impresion/imprimir_precios.php">
 		</form>
+		
+		<div id="historial">
+		</div>
 		<?php include('forms/productos.php'); ?>
 		<?php include('forms/existencias.php'); ?>
-		
+
 		<?php  include('scripts.php'); ?>
-		<script src="js/productos.js"></script>
+		<script src="js/productos.js?v=<?= date("d.m.Y-h-i-s")?>"></script>
 		<script src="js/carrito.js"></script>
 		<script src="https://unpkg.com/sticky-table-headers"></script>
 	</body>
