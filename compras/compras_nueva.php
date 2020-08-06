@@ -61,10 +61,10 @@
 						<label for="">Código del Producto:</label>
 						<input id="codigo_producto"   type="text" class="form-control" placeholder="Código de barras">
 					</div>
-					<div class="col-sm-2">
+					<div class="col-sm-4">
 						<div class="form-group">
 							<label for="buscar_producto">Producto:</label>
-							<input id="buscar_producto" autofocus  type="text" class="form-control"	>
+							<input size="55" id="buscar_producto" autofocus  type="text" class="form-control"	>
 						</div>
 					</div>
 					
@@ -84,7 +84,7 @@
 							<input type="checkbox" id="entrada_inventario" value="PENDIENTE"> Entrada a Inventario 
 						</label> 
 					</div>
-					<div class="col-sm-1">
+					<div class="col-sm-1 " hidden>
 						<div class="form-group">
 							<label>Folio: </label> 
 							<input  id='id_compras' class="form-control" readonly value='<?php echo $_GET["id_compras"]?>'>
