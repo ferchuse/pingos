@@ -10,15 +10,15 @@
 ?>
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		
 		<style>
 			<style>
 				.tabla_totales .row{
-		  	margin-bottom: 10px;
+				margin-bottom: 10px;
 				}
 				
 				
@@ -47,42 +47,48 @@
 			</style>  
 		</style>
 		
-    <title>Nueva Compra</title>
-    <?php include("../styles_carpetas.php");?>
+		<title>Nueva Compra</title>
+		<?php include("../styles_carpetas.php");?>
 	</head>
-  <body>
-		<div class="container-fluid hidden-print">
-			<?php include("../menu_carpetas.php");?>
-		</div>
+	<body>
+		
+		<?php include("../menu_carpetas.php");?>
 		
 		<div class="container-fluid hidden-print">
 			<form id="form_agregar_producto" class="form-inline" autocomplete="off">
 				<div class="row">
-					<div class="col-md-2">
+					<div class="col-sm-2">
 						<label for="">Código del Producto:</label>
 						<input id="codigo_producto"   type="text" class="form-control" placeholder="Código de barras">
 					</div>
-					<div class="col-md-3">
+					<div class="col-sm-2">
 						<div class="form-group">
 							<label for="buscar_producto">Producto:</label>
-							<input id="buscar_producto" autofocus  type="text" class="form-control" size="50">
+							<input id="buscar_producto" autofocus  type="text" class="form-control"	>
 						</div>
 					</div>
-					<div class="col-sm-1 ">
-						
-					</div>
-					<div class="col-sm-2 ">
+					
+					<div class="col-sm-3 ">
 						<label>Proveedor</label> 
 						<?php echo generar_select($link, "proveedores", "id_proveedores", "nombre_proveedores");?>
 					</div>
 					<div class="col-sm-2">
+						<label class="clearfix">
+							Estatus:
+						</label> 
+						<select class="form-control" name="estatus_compras">
+							<option >PENDIENTE</option>
+							<option >FINALIZADA</option>
+						</select >
 						<label>
-						<input checked type="checkbox" id="entrada_inventario" value="PENDIENTE"> Entrada a Inventario 
+							<input type="checkbox" id="entrada_inventario" value="PENDIENTE"> Entrada a Inventario 
 						</label> 
 					</div>
 					<div class="col-sm-1">
-						<label>Folio: </label> 
-						<input  id='id_compras' class="form-control" readonly value='<?php echo $_GET["id_compras"]?>'>
+						<div class="form-group">
+							<label>Folio: </label> 
+							<input  id='id_compras' class="form-control" readonly value='<?php echo $_GET["id_compras"]?>'>
+						</div>
 					</div>
 					
 				</div>
@@ -97,7 +103,9 @@
 									<th class="text-center">Cantidad</th>
 									<th class="text-center">Unidad</th>
 									<th class="text-center">Descripcion del Producto</th>
-									<th class="text-center">Precio Unitario</th>
+									<th hidden class="text-center">Costo</th>
+									<th hidden class="text-center">Piezas/KG</th>
+									<th class="text-center">Costo Compra</th>
 									<th class="text-center">Importe</th>
 									<th class="text-center">Existencia</th>
 									<th class="text-center">Acciones</th>
@@ -125,7 +133,7 @@
 					
 					<div class="col-sm-2 text-right">
 						<button class="btn btn-success btn-lg" FORM="" id="cerrar_venta">
-								<i class="fas fa-save"></i> Guardar
+							<i class="fas fa-save"></i> Guardar
 						</button>
 					</div>
 				</div>
@@ -140,4 +148,4 @@
 		<script src="compras.js"></script>
 		
 	</body>
-</html>					
+</html>						

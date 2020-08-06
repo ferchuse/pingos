@@ -45,7 +45,7 @@ $(document).ready(function(){
 	
 	// Editar Compras
 	if($("#id_compras").val()){
-		
+		console.log("Cargar Compra")
 		$.ajax({
 			url: "compras_detalle.php",
 			data: {
@@ -56,9 +56,11 @@ $(document).ready(function(){
 			
 			}).done(function(respuesta){
 			
+			$("#id_proveedores").val(respuesta.compra.id_proveedores)
+			
 			for(let producto of respuesta.productos ){
 				
-			
+				
 				
 				agregarProducto(producto);
 			}
@@ -86,7 +88,7 @@ $(document).ready(function(){
 	});
 	
 	$("#modal_granel").on("shown.bs.modal", function () { 
-    $("#cantidad").focus();
+		$("#cantidad").focus();
 	});
 	
 	
@@ -192,7 +194,11 @@ function agregarProducto(producto){
 		<td class="text-center">${producto['unidad_productos']}</td> 
 		<td class="text-center">${producto['descripcion_productos']}</td>
 		<td class="col-sm-1">
-		<input  type="number" class='precio form-control' value='${producto['costo_proveedor']}'> </td>
+		<input  type="number" class='precio form-control' value='${producto['costo_proveedor']}'> 
+		</td>
+		<td hidden class="col-sm-1 hidden">
+		<input  type="number" class='precio form-control' value='${producto['costo_proveedor']}'> 
+		</td>
 		<td class="col-sm-1"><input readonly type="number" class='importe form-control text-right' > </td>
 		<td class="col-sm-1">	
 		<input class="existencia_anterior form-control" readonly  value='${producto['existencia_productos']}'> 
@@ -232,6 +238,13 @@ function agregarProducto(producto){
 function guardarVenta(event){
 	event.preventDefault();
 	console.log("guardarVenta");
+	
+	if($("#id_proveedores").val() == ""){
+		
+		alertify.error("Elige un Proveedor");
+		return false;
+	}
+	
 	if($("#tabla_venta tbody tr").length != 0){
 		var boton = $(this);
 		var icono = boton.find('.fa');
@@ -340,7 +353,7 @@ function buscar(filtro,table_id,indice) {
 		if (td) {
 			if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
 				tr[i].style.display = "";
-			  } else {
+				} else {
 				tr[i].style.display = "none";
 			}
 		} 

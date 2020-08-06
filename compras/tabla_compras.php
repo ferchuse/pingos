@@ -98,7 +98,6 @@
 										}
 										
 									?>
-									
 									<tr class="<?php echo $color; ?>">
 										<td class="text-center"><?php echo $id_compras; ?></td>
 										<td class="text-center"><?php echo date("d/m/Y", strtotime($fecha_compras)); ?></td>
@@ -122,6 +121,10 @@
 												<a target="_blank" href="compras_nueva.php?id_compras=<?php echo $id_compras ?>"  class="btn btn-warning">
 													<i class="fas fa-edit"></i>
 												</a>
+												
+												<button hidden type="button" data-id_registro="<?php echo $id_compras ?>"  class="btn btn-success btn_ingresar hidden" title="Ingresar Inventario"> 
+													<i class="fas fa-arrow-right"></i>
+												</button>
 												<?php
 												}
 											?>
@@ -135,9 +138,7 @@
 						</h4>
 					</div>
 				</div>
-				<pre>
-					<?php echo $consultaVentas?>
-				</pre>
+				
 			</div>
 		</div>
 	</form>
