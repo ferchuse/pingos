@@ -45,47 +45,52 @@
 				?>
 				
 				<?php
-					if ($_COOKIE["permiso_usuarios"] == "administrador") { ?>
+					if ($_COOKIE["permiso_usuarios"] == "administrador" || $_COOKIE['permiso_usuarios'] == 'compras') { ?>
 					<li class=" <?php echo $menu_activo == "compras" ? "active" : ''; ?>">
 						<a href="../compras/compras_lista.php">
 							<i class="fas fa-shopping-cart"></i> Compras
 						</a>
 					</li>
-					<li class="dropdown <?php echo $menu_activo == "reportes" ? "active" : ''; ?>">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<i class="fas fa-chart-bar"></i> Reportes <strong class="caret"></strong>
-						</a>
-						<ul class="dropdown-menu">
-							<li>
-								<a href="../reportes.php"><i class="fas fa-chart-bar"></i> Ventas Por Día</a>
-							</li>
-							<li>
-								<a href="../inventarios/movimientos.php"><i class="fas fa-chart-bar"></i> Movimientos</a>
-							</li>
-						</ul>
-					</li>
-					
-					<li class=" <?php echo $menu_activo == "producto" ? "active" : ''; ?>">
-						<a href="../productos.php">
-							<i class="fa fa-list"></i> Productos
-						</a>
-					</li>
-					
-					<li class="dropdown <?php echo $menu_activo == "catalogos" ? "active" : ''; ?>">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<i class="fas fa-file-alt"></i> Catálogos <strong class="caret"></strong>
-						</a>
-						<ul class="dropdown-menu">
-							<li>
-								<a href="../departamentos.php"><i class="fas fa-file-alt"></i> Departamentos</a>
-							</li>
-							<li>
-								<a href="../proveedores.php"><i class="fas fa-file-alt"></i> Proveedores</a>
-							</li>
-							<li>
-								<a href="../catalogos/egresos.php"><i class="fas fa-file-alt"></i> Egresos</a>
-							</li>
-						</ul>
+					<?php
+					}
+				?>
+				<?php
+					if ($_COOKIE["permiso_usuarios"] == "administrador" ) { ?>
+				<li class="dropdown <?php echo $menu_activo == "reportes" ? "active" : ''; ?>">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						<i class="fas fa-chart-bar"></i> Reportes <strong class="caret"></strong>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+							<a href="../reportes.php"><i class="fas fa-chart-bar"></i> Ventas Por Día</a>
+						</li>
+						<li>
+							<a href="../inventarios/movimientos.php"><i class="fas fa-chart-bar"></i> Movimientos</a>
+						</li>
+					</ul>
+				</li>
+				
+				<li class=" <?php echo $menu_activo == "producto" ? "active" : ''; ?>">
+					<a href="../productos.php">
+						<i class="fa fa-list"></i> Productos
+					</a>
+				</li>
+				
+				<li class="dropdown <?php echo $menu_activo == "catalogos" ? "active" : ''; ?>">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						<i class="fas fa-file-alt"></i> Catálogos <strong class="caret"></strong>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+							<a href="../departamentos.php"><i class="fas fa-file-alt"></i> Departamentos</a>
+						</li>
+						<li>
+							<a href="../proveedores.php"><i class="fas fa-file-alt"></i> Proveedores</a>
+						</li>
+						<li>
+							<a href="../catalogos/egresos.php"><i class="fas fa-file-alt"></i> Egresos</a>
+						</li>
+					</ul>
 					</li>
 					
 					<?php

@@ -71,17 +71,26 @@ $(document).ready(function(){
 		
 	}
 	
+	$("#piezas").keyup(modificarPrecio);
 	
-	$('#form_granel').submit(agregarGranel);
+	
+	// $('#form_granel').submit(agregarGranel);
 	$('#form_agregar_producto').submit(function(event){
 		
 		event.preventDefault();
-	});
+	});	
 	
+	$('#form_productos').submit(guardarProducto);
+	
+	$('#codigo_productos').keypress( buscarCodigo);
+	
+	
+	$('#btn_nuevo_producto').click( nuevoProducto);
+	$('#btn_nuevo_proveedor').click( loadProveedores);
 	$('#cerrar_venta').click( guardarVenta);
 	
-	$("#cantidad").on("keyup", calcularGranel)
-	$("#importe").on("keyup", calcularGranel);
+	// $("#cantidad").on("keyup", calcularGranel)
+	// $("#importe").on("keyup", calcularGranel);
 	
 	$("input").focus( function selecciona_input(){
 		$(this).select();
@@ -91,32 +100,18 @@ $(document).ready(function(){
 		$("#cantidad").focus();
 	});
 	
-	
+	$('#costo_mayoreo').keyup(modificarPrecio );
+	$('#ganancia_menudeo_porc').keyup(calculaPrecioVenta );
+	$('#precio_menudeo').keyup(calculaGanancia );
 	
 	//Autocomplete Productos https://github.com/devbridge/jQuery-Autocomplete
 	$("#buscar_producto").autocomplete({
 		serviceUrl: "../control/productos_autocomplete.php",   
 		onSelect: function(eleccion){
 			console.log("Elegiste: ",eleccion);
-			if(eleccion.data.unidad_productos == 'KG'){
-				$("#precio_mayoreo").val(eleccion.data.precio_mayoreo);
-				$("#precio_menudeo").val(eleccion.data.precio_menudeo);
-				$("#precio").val(eleccion.data.costo_proveedor);
-				
-				$("#modal_granel").modal("show");
-				$("#importe").val(eleccion.data.costo_proveedor * 1);
-				producto_elegido = eleccion.data;
-				$("#buscar_producto").val("");
-				$("#buscar_producto").focus();
-			} 
-			else{ 
-				
-				agregarProducto(eleccion.data)
-				// $("#codigo_producto").focus(); 
-				
-			}
 			
-			// $("#tel_clientes").val(eleccion.data.tel_clientes)
+			agregarProducto(eleccion.data)
+			
 		},
 		autoSelectFirst	:true , 
 		showNoSuggestionNotice	:true , 
@@ -126,36 +121,63 @@ $(document).ready(function(){
 	
 });
 
-function calcularGranel(event){
-	let precio = Number($("#precio").val());
-	let cantidad = Number($("#cantidad").val());
-	console.log("target",event.target.id)
+
+function modificarPrecio() {
+	console.log("modificarPrecio()");
+	var costo_mayoreo = Number($("#costo_mayoreo").val());
+	var piezas = Number($('#piezas').val());
 	
-	let importe = precio * cantidad;
 	
-	if(event.target.id == 'cantidad'){ 
+	if (piezas != '') {
+		var costo_pz = costo_mayoreo / piezas;
+		console.log("Costo Pieza: " , costo_pz);
 		
-		$("#importe").val(importe.toFixed(2))
+		$('#costo_proveedor').val(costo_pz.toFixed(2));
+		
+		if (costo_pz != '') {
+			
+			//ganancia menudeo
+			var ganancia_menudeo_porc = Number($('#ganancia_menudeo_porc').val());
+			var ganancia_menudeo_pesos = (ganancia_menudeo_porc * costo_pz) / 100;
+			$('#ganancia_menudeo_pesos').val(ganancia_menudeo_pesos.toFixed(2));
+			
+			//precio mayoreo
+			var precio_menudeo = costo_pz + ganancia_menudeo_pesos;
+			$('#precio_menudeo').val(precio_menudeo.toFixed(2));
+			
+		}
 	}
-	else{
-		importe = Number($("#importe").val());
-		cantidad = importe / precio;
-		
-		$("#cantidad").val(cantidad.toFixed(3))
+}
+function calculaGanancia() {
+	console.log("calculaGanancia()")
+	var precio_menudeo = Number($(this).val());
+	var costo_unitario = Number($('#costo_proveedor').val());
+	
+	if (costo_unitario != '') {
+		var ganancia_menudeo_porc = ((precio_menudeo * 100) / costo_unitario) - 100;
+		$('#ganancia_menudeo_porc').val(ganancia_menudeo_porc.toFixed(2));
+		var ganancia_menudeo_pesos = precio_menudeo - costo_unitario;
+		$('#ganancia_menudeo_pesos').val(ganancia_menudeo_pesos.toFixed(2));
 		
 	}
-	console.log("importe",importe )
 }
 
-function agregarGranel(event){
-	event.preventDefault();
+function calculaPrecioVenta() {
+	console.log("calculaPrecioVenta");
 	
-	producto_elegido.cantidad = $("#cantidad").val();
-	$("#modal_granel").modal("hide");
-	agregarProducto(producto_elegido);
+	var ganancia_menudeo_porc = Number($(this).val());
+	// var costo_unitario = Number($('#costo_unitario').val());
+	var costo_unitario = Number($('#costo_proveedor').val());
 	
-	$("#buscar_producto").focus();
+	if (costo_unitario != '') {
+		var ganancia_menudeo_pesos = (ganancia_menudeo_porc * costo_unitario) / 100;
+		$('#ganancia_menudeo_pesos').val(ganancia_menudeo_pesos.toFixed(2));
+		var precio_menudeo = costo_unitario + ganancia_menudeo_pesos;
+		$('#precio_menudeo').val(precio_menudeo.toFixed(2));
+	}
+	
 }
+
 
 
 function agregarProducto(producto){
@@ -183,6 +205,10 @@ function agregarProducto(producto){
 	}
 	else{
 		console.log("El producto no existe, agregarlo a la tabla");
+		
+		
+		
+		
 		$fila_producto = `<tr>
 		<td class="col-sm-1">
 		<input hidden class="id_productos"  value="${producto['id_productos']}">
@@ -191,19 +217,28 @@ function agregarProducto(producto){
 		<input hidden class="precio_mayoreo" value='${producto['precio_mayoreo']}'>
 		<input type="number"  step="any" class="cantidad form-control text-right"  value='${producto['cantidad']}'>
 		</td>
-		<td class="text-center">${producto['unidad_productos']}</td> 
+		
 		<td class="text-center">${producto['descripcion_productos']}</td>
+		
+		
 		<td class="col-sm-1">
-		<input  type="number" class='precio form-control' value='${producto['costo_proveedor']}'> 
+		<input  type="number" readonly class='costo_mayoreo form-control' value='${producto['costo_mayoreo']}'> 
 		</td>
-		<td hidden class="col-sm-1 hidden">
-		<input  type="number" class='precio form-control' value='${producto['costo_proveedor']}'> 
+		<td class="col-sm-1">
+		<input  type="number" readonly class='piezas form-control' value='${producto['piezas']}'> 
 		</td>
+		<td class="col-sm-1">
+		<input  type="number" readonly class='precio form-control' value='${producto['costo_proveedor']}'> 
+		</td>
+		
 		<td class="col-sm-1"><input readonly type="number" class='importe form-control text-right' > </td>
 		<td class="col-sm-1">	
 		<input class="existencia_anterior form-control" readonly  value='${producto['existencia_productos']}'> 
 		</td>
 		<td class="text-center">
+		<button title="Editar Producto" data-id_producto="${producto['id_productos']}" class="btn btn-warning btn_editar">
+		<i class="fa fa-edit"></i>
+		</button>
 		<button title="Eliminar Producto" class="btn btn-danger btn_eliminar">
 		<i class="fa fa-trash"></i>
 		</button> 
@@ -222,6 +257,7 @@ function agregarProducto(producto){
 			$(this).select();
 		});
 		$(".btn_eliminar").click(eliminarProducto);
+		$(".btn_editar").click(cargarRegistro);
 		
 		
 	}
@@ -301,6 +337,115 @@ function guardarVenta(event){
 }
 
 
+function nuevoProducto() {
+	$('#form_productos')[0].reset();
+	$('#modal_productos').modal('show');
+	
+}
+function loadProveedores() {
+	$.ajax({
+		"url": "../funciones/get_table.php",
+		data:{
+			"tabla": "proveedores"
+		}
+		
+		}).done(function(respuesta){
+		let proveedores =`<option value="">
+		Seleccione...
+		</option>`;
+		
+		$.each(respuesta.filas, function(index, fila){
+			proveedores += `
+			<option value="${fila.id_proveedores}">
+			${fila.nombre_proveedores}
+			</option>
+			`;	
+			
+		})
+		
+		$("#id_proveedores").html(proveedores);
+		
+	})
+}
+
+
+function buscarCodigo(event){
+	if(event.which == 13){
+		console.log("buscarCodigo()");
+		var input = $(this);
+		var codigoProducto = $(this).val();
+		
+		input.prop('disabled',true);
+		input.addClass('ui-autocomplete-loading');
+		
+		$.ajax({
+			url: "../control/buscar_normal.php",
+			dataType: "JSON",
+			method: 'POST',
+			data: {tabla:'productos', campo:'codigo_productos', id_campo: codigoProducto}
+			}).done(function (respuesta){
+			
+			if(respuesta.numero_filas >= 1){
+				$.each(respuesta.fila, function(name, value){
+					$("#" + name).val(value);
+				});
+			}
+			else{
+				alertify.error('Código no Encontrado');
+			}
+			
+			
+			}).always(function(){
+			
+			// input.toggleClass('ui-autocomplete-loading');
+			input.prop('disabled',false);
+			$("#descripcion_productos").focus();
+			input.removeClass('ui-autocomplete-loading');
+		});
+		
+	}
+}
+
+function cargarRegistro() {
+	
+	$('#form_productos')[0].reset();
+	
+	console.log("Partida", $(".btn_editar").index(this))
+	$("#partida").val($(".btn_editar").index(this));
+	
+	var boton = $(this);
+	var icono = boton.find('.fa');
+	icono.toggleClass('fa-pencil fa-spinner fa-spin fa-floppy-o');
+	boton.prop('disabled', true);
+	var id_productos = boton.data('id_producto');
+	$.ajax({
+		url: '../control/buscar_normal.php',
+		method: 'POST',
+		dataType: 'JSON',
+		data: { campo: 'id_productos', tabla: 'productos', id_campo: id_productos }
+		}).done(function (respuesta) {
+		if (respuesta.encontrado == 1) {
+			$.each(respuesta["fila"], function (name, value) {
+				
+				$('#input_granel').html('');
+				$.each(respuesta["fila"], function (name, value) {
+					
+					$("#form_productos").find("#" + name).val(value);
+					$("#form_productos").find("#ultimo_" + name).val(value);
+				});
+				
+			});
+			$('h3.modal-title').text('Editar Producto');
+			$('#modal_productos').modal('show');
+		}
+		icono.toggleClass('fa-pencil fa-spinner fa-spin');
+		boton.prop('disabled', false);
+	});
+	
+}
+
+
+
 
 
 function eliminarProducto(){
@@ -362,23 +507,63 @@ function buscar(filtro,table_id,indice) {
 	return num_rows;
 }
 
-function imprimirTicket(id_ventas){
-	console.log("imprimirTicket()");
+function guardarProducto(event) {
+	event.preventDefault();
+	var boton = $(this).find(':submit');
+	var icono = boton.find('.fa');
+	boton.prop('disabled', true);
+	icono.toggleClass('fa-save fa-spinner fa-spin');
 	
+	var formulario = $(this).serializeArray();
+	// console.log("formulario: ", formulario)
+	// console.log("formulario: ", $(this).serialize())
+	$.ajax({
+		url: '../productos/guardar.php',
+		dataType: 'JSON',
+		method: 'POST',
+		data: formulario
+		}).done(function (respuesta) {
+		console.log(respuesta);
+		if (respuesta.estatus == "success") {
+			alertify.success('Se ha guardado correctamente');
+			
+			$('#modal_productos').modal("hide");
+			
+			console.log("campos: ",$("#form_productos").serializeArray())
+			
+			$.each(formulario, function(index, campo){
+				switch(campo.name){
+					
+					case "existencia_productos":
+					$("#tabla_venta tbody tr").eq($("#partida").val()).find(".existencia_anterior").val(campo.value);
+					break;
+					
+					case "costo_mayoreo":
+					$("#tabla_venta tbody tr").eq($("#partida").val()).find(".costo_mayoreo").val(campo.value);
+					break;
+					
+					case "piezas":
+					$("#tabla_venta tbody tr").eq($("#partida").val()).find(".piezas").val(campo.value);
+					break;
+					case "costo_proveedor":
+					$("#tabla_venta tbody tr").eq($("#partida").val()).find(".precio").val(campo.value);
+					break;
+					
+					
+				}
+				
+			})
+			
+			sumarImportes();
+			
+		} 
+		else {
+			alertify.error('Error al guardar');
+			
+		}
+		}).always(function () {
+		boton.prop('disabled', false);
+		icono.toggleClass('fa-save fa-spinner fa-spin');
+	});
 	
-	// $.ajax({
-	// url: "impresion/imprimir_venta.php",
-	// data:{
-	// id_ventas : id_ventas
-	// }
-	// }).done(function (respuesta){
-	
-	// $("#ticket").html(respuesta); 
-	// window.print();
-	// }).always(function(){
-	
-	// boton.prop("disabled", false);
-	// icono.toggleClass("fa-print fa-spinner fa-spin");
-	
-	// });
-}		
+}

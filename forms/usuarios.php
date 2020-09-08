@@ -34,6 +34,7 @@
 										<option value="administrador">Administrador</option>
 										<option value="caja">Caja</option>
 										<option value="Mostrador">Mostrador</option>
+										<option value="compras">Compras</option>
 									</select>
 								</div>
 							</div>
