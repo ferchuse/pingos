@@ -55,21 +55,35 @@
 					}
 				?>
 				<?php
+					if ($_COOKIE["permiso_usuarios"] == "administrador" || $_COOKIE['permiso_usuarios'] == 'compras') { ?>
+					<li class="dropdown <?php echo $menu_activo == "reportes" ? "active" : ''; ?>">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							<i class="fas fa-chart-bar"></i> Reportes <strong class="caret"></strong>
+						</a>
+						<ul class="dropdown-menu">
+							<?php
+								if ($_COOKIE["permiso_usuarios"] == "administrador" ) { ?>
+								<li>
+									<a href="../reportes.php"><i class="fas fa-chart-bar"></i> Ventas Por Día</a>
+								</li>
+								<?php
+								}
+							?>
+							<?php
+								if ($_COOKIE["permiso_usuarios"] == "administrador" || $_COOKIE['permiso_usuarios'] == 'compras') { ?>
+								<li>
+									<a href="../inventarios/movimientos.php"><i class="fas fa-chart-bar"></i> Movimientos</a>
+								</li>
+								<?php
+								}
+							?>
+						</ul>
+					</li>
+					<?php
+					}
+				?>
+				<?php
 					if ($_COOKIE["permiso_usuarios"] == "administrador" ) { ?>
-				<li class="dropdown <?php echo $menu_activo == "reportes" ? "active" : ''; ?>">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-						<i class="fas fa-chart-bar"></i> Reportes <strong class="caret"></strong>
-					</a>
-					<ul class="dropdown-menu">
-						<li>
-							<a href="../reportes.php"><i class="fas fa-chart-bar"></i> Ventas Por Día</a>
-						</li>
-						<li>
-							<a href="../inventarios/movimientos.php"><i class="fas fa-chart-bar"></i> Movimientos</a>
-						</li>
-					</ul>
-				</li>
-				
 				<li class=" <?php echo $menu_activo == "producto" ? "active" : ''; ?>">
 					<a href="../productos.php">
 						<i class="fa fa-list"></i> Productos
@@ -91,65 +105,65 @@
 							<a href="../catalogos/egresos.php"><i class="fas fa-file-alt"></i> Egresos</a>
 						</li>
 					</ul>
-					</li>
-					
-					<?php
-					}
-					if ($_COOKIE["permiso_usuarios"] == "caja" || $_COOKIE['permiso_usuarios'] == "administrador" || $_COOKIE['permiso_usuarios'] == "mostrador") {
-					?>
-					<li class="<?php echo $menu_activo == "resumen" ? "active" : ''; ?>">
-						<a href="../resumen.php">
-							<i class="fas fa-cash-register"></i> Corte de Caja
-						</a>
-					</li>
-					
-					<?php
-					}
-				?>
-			</ul>
-			
-			<ul class="nav navbar-nav navbar-right">
+				</li>
+				
 				<?php
-					if ($_COOKIE["permiso_usuarios"] == "administrador") {
-					?>
-					<li class="dropdown <?php echo $menu_activo == "control" ? "active" : ''; ?>">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<i class="fas fa-cog"></i> Configuración <strong class="caret"></strong>
-						</a>
-						<ul class="dropdown-menu">
-							<li>
-								<a href="../usuarios.php"><i class="fa fa-user-plus "></i> Usuarios</a>
-							</li>
-							<li>
-								<a target="_blank"  href="../funciones/respaldar.php"><i class="fa fa-business-time "></i> Respaldar</a>
-							</li>
-						</ul>
-					</li>
-					
-					<?php
-					}
+				}
+				if ($_COOKIE["permiso_usuarios"] == "caja" || $_COOKIE['permiso_usuarios'] == "administrador" || $_COOKIE['permiso_usuarios'] == "mostrador") {
 				?>
-				<li >
-					<a href="index.php">
-						<i class="fas fa-clock"></i> Turno <?php echo $_COOKIE["id_turnos"];?>
+				<li class="<?php echo $menu_activo == "resumen" ? "active" : ''; ?>">
+					<a href="../resumen.php">
+						<i class="fas fa-cash-register"></i> Corte de Caja
 					</a>
 				</li>
-				<li class="dropdown">
+				
+				<?php
+				}
+			?>
+		</ul>
+		
+		<ul class="nav navbar-nav navbar-right">
+			<?php
+				if ($_COOKIE["permiso_usuarios"] == "administrador") {
+				?>
+				<li class="dropdown <?php echo $menu_activo == "control" ? "active" : ''; ?>">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-						<i class="fa fa-user"></i>
-						<span id="menu_nombre_usuario">
-							<?php echo isset($_COOKIE["nombre_usuarios"]) ? $_COOKIE["nombre_usuarios"] : "" ?>
-						</span>
-						<strong class="caret"></strong>
-						<input type="hidden" id="id_usuarios" value="<?php echo isset($_COOKIE["id_usuarios"]) ? $_COOKIE["id_usuarios"] : ""; ?>">
+						<i class="fas fa-cog"></i> Configuración <strong class="caret"></strong>
 					</a>
 					<ul class="dropdown-menu">
 						<li>
-							<a href="../login/logout.php"><i class="fas fa-sign-out-alt"></i> Salir</a>
+							<a href="../usuarios.php"><i class="fa fa-user-plus "></i> Usuarios</a>
+						</li>
+						<li>
+							<a target="_blank"  href="../funciones/respaldar.php"><i class="fa fa-business-time "></i> Respaldar</a>
 						</li>
 					</ul>
 				</li>
-			</ul>
-		</div>
+				
+				<?php
+				}
+			?>
+			<li >
+				<a href="index.php">
+					<i class="fas fa-clock"></i> Turno <?php echo $_COOKIE["id_turnos"];?>
+				</a>
+			</li>
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+					<i class="fa fa-user"></i>
+					<span id="menu_nombre_usuario">
+						<?php echo isset($_COOKIE["nombre_usuarios"]) ? $_COOKIE["nombre_usuarios"] : "" ?>
+					</span>
+					<strong class="caret"></strong>
+					<input type="hidden" id="id_usuarios" value="<?php echo isset($_COOKIE["id_usuarios"]) ? $_COOKIE["id_usuarios"] : ""; ?>">
+				</a>
+				<ul class="dropdown-menu">
+					<li>
+						<a href="../login/logout.php"><i class="fas fa-sign-out-alt"></i> Salir</a>
+					</li>
+				</ul>
+			</li>
+		</ul>
 	</div>
+</div>
 </nav>
