@@ -15,7 +15,7 @@
 		} else {
 		$fecha_corte = date("Y-m-d");
 	}
-	if (isset($_GET["tipo_corte"])) {
+	if (isset($_GET["tipo_corte"])  || isset($_GET["fecha_ventas"])) {
 		$tipo_corte = $_GET["tipo_corte"];
 	} 
 	else 	{
@@ -30,7 +30,7 @@
 	
 	
 	
-	if ($tipo_corte == "dia") {
+	if ($tipo_corte == "dia" ) {
 		//Corte por dia
 		$consulta_ventas = "SELECT * FROM ventas LEFT JOIN usuarios USING(id_usuarios) 
 		WHERE fecha_ventas = '$fecha_corte' ORDER BY id_ventas DESC
