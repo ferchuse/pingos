@@ -46,12 +46,14 @@
 									</div>
 									<div class="form-group ">
 										
-										<label for="piezas">Piezas/KG por Paquete:</label>
+										<label for="piezas"><span class="unidad_medida">Pieza</span>s por Paquete:</label>
 										<input placeholder="" readonly  type="number"  step="any" class="form-control" id="ultimo_piezas" name="ultimo_piezas">
 									</div>
 									<div class="form-group ">
 										
-										<label for="costo_proveedor">Costo x Pieza:</label>
+										<label for="costo_proveedor">
+											Costo x <span class="unidad_medida">Pieza</span>:
+										</label>
 										<input placeholder="" readonly type="number"  step="any" class="form-control" id="ultimo_costo_proveedor" name="ultimo_costo_proveedor">
 										
 									</div>
@@ -79,14 +81,14 @@
 									</div>
 									<div class="form-group ">
 										
-										<label for="piezas">Piezas/KG por Paquete:</label>
+										<label for="piezas"><span class="unidad_medida">Pieza</span>s por Paquete:</label>
 										<input placeholder=""  type="number"  step="any" class="form-control" id="piezas" name="piezas">
 										
 									</div>
 									<div class="form-group ">
 										
 										
-										<label for="costo_proveedor">Costo x Pieza:</label>
+										<label for="costo_proveedor">Costo x <span class="unidad_medida">Pieza</span>:</label>
 										<input placeholder=""  type="number"  step="any" class="form-control" id="costo_proveedor" name="costo_proveedor">
 										
 									</div>
@@ -106,15 +108,20 @@
 										
 										<input placeholder="" type="number"  step=".01" class="form-control" id="precio_mayoreo" name="precio_mayoreo">
 									</div> 
-									</div> 
-								</div>
-								<div class="form-group ">
-								<label for="existencia_productos">Existencia en Piezas:</label>
-								<input placeholder="Cantidad de productos en existencia" type="number" min="0" step="any" class="form-control" id="existencia_productos" name="existencia_productos">
+								</div> 
+							</div>
+							<div class="form-group ">
+								<label for="existencia_productos">Existencia:</label>
+								<input hidden type="number" min="0" step="any" class="form-control" id="existencia_productos" name="existencia_productos">
 							</div>
 							<div class="form-group ">
 								<label for="min_productos">Minimo:</label>
 								<input placeholder="" type="number" min="0" class="form-control" id="min_productos" name="min_productos">
+							</div>
+							
+							<div class="form-group ">
+								<label for="maximo">Máximo:</label>
+								<input placeholder="" type="number"  class="form-control" id="maximo" name="maximo">
 							</div>
 							
 							

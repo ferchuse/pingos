@@ -76,6 +76,7 @@
 								<th class="text-center">Precio Venta</th>
 								<th class="text-center">Precio Mayoreo</th>
 								<th class="text-center">Mínimo</th>
+								<th class="text-center">Máximo</th>
 								<th class="text-center">Existencia</th>
 								<th class="text-center">Acciones</th>	
 							</tr>
@@ -83,7 +84,7 @@
 								<th class="text-center">
 									<input type="text" class="form-control buscar_descripcion" data-indice="0" placeholder="Buscar descripcion">
 								</th>
-								<th colspan="8">
+								<th colspan="9">
 								</th>
 							</tr>
 						</thead>
@@ -107,12 +108,12 @@
 		
 		<div id="historial">
 		</div>
-		<?php include('forms/productos.php'); ?>
-		<?php include('forms/existencias.php'); ?>
+		<?php include('productos/form_productos.php'); ?>
+		<?php include('productos/form_existencias.php'); ?>
 
 		<?php  include('scripts.php'); ?>
-		<script src="js/productos.js?v=<?= date("d.m.Y-h-i-s")?>"></script>
-		<script src="js/carrito.js"></script>
+		<script src="productos/productos.js?v=<?= date("d.m.Y-h-i-s")?>"></script>
+		<script src="productos/carrito.js"></script>
 		<script src="https://unpkg.com/sticky-table-headers"></script>
 	</body>
 </html>

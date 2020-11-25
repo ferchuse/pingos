@@ -1,122 +1,7 @@
-function listaProductos() {
-	let tableTemplate;
-	let bgClass;
-	let $boton = $("#form_filtros").find(":submit");
-	let $icono = $boton.find(".fa");
-	$boton.prop("disabled", true)
-	$icono.toggleClass("fa-search fa-spinner fa-spin");
-	$.ajax({
-		url: 'productos/productos2.php',
-		dataType: 'JSON',
-		data: $("#form_filtros").serializeArray()
-		}).done(function (respuesta) {
-		$.each(respuesta, function (index, value) {
-			bgClass = Number(value.existencia_productos) < Number(value.min_productos) ? "bg-danger" : " ";
-			
-			tableTemplate += `
-			<tr class="${bgClass}">
-			<td class="text-center">${value.descripcion_productos}</td>
-			<td class="text-center">${value.nombre_departamentos} </td>
-			<td class="text-center">${value.costo_proveedor} </td>
-			<td class="text-center">${value.ganancia_menudeo_porc} </td>
-			<td class="text-center">${value.precio_menudeo} </td>
-			<td class="text-center">${value.precio_mayoreo} </td>                
-			<td class="text-center">${value.min_productos} </td>
-			<td class="text-center">${value.existencia_productos} </td>                
-			<td class="text-center">
-			<input form='form_imprimir_precios' name="id_productos[]" class="seleccionar" type="checkbox" value="${value.id_productos}">
-			<button class="btn btn-warning btn_editar" data-id_producto="${value.id_productos}">
-			<i class="fa fa-edit"></i>
-			</button>
-			<button class="btn btn-danger btn_eliminar" data-id_producto="${value.id_productos}">
-			<i class="fa fa-trash"></i>
-			</button>
-			<button class="btn btn-success btn_carrito" 
-			data-id_productos="${value.id_productos}"
-			data-descripcion="${value.descripcion_productos}"
-			data-precio="${value.costo_proveedor}"
-			data-unidad="${value.unidad_productos}"
-			>
-			<i class="fa fa-cart-plus"></i>
-			</button>
-			<button class="btn btn-info btn_historial" 
-			data-id_productos="${value.id_productos}"
-			>
-			<i class="fa fa-clock"></i>
-			</button>
-			</td>
-			</tr>  
-			`;
-			
-		});
-		
-		$('#bodyProductos').html(tableTemplate);
-		$("#tabla_productos").stickyTableHeaders();
-		$boton.prop("disabled", false)
-		$icono.toggleClass("fa-search fa-spinner fa-spin");
-		
-		$(".seleccionar").change(contarSeleccionados)
-		
-		$(".buscar_codigo").keyup( buscarCodigo);
-		$(".buscar_descripcion").keyup( buscarDescripcion);
-		$('.btn_eliminar').click( confirmaEliminar);
-		$('.btn_editar').click( cargarRegistro);
-		$('.btn_carrito').click(pedirCantidad);
-		$('.btn_historial').click(mostrarHistorial);
-		
-		
-		}).fail(function(xhr, error, ernum){
-		alertify.error("Ocurrio un Error" + errnum);
-		
-	});
-}
-function mostrarHistorial() {
-	// $('#form_productos')[0].reset();
-	var boton = $(this);
-	var icono = boton.find('.fa');
-	icono.toggleClass('fa-clock fa-spinner fa-spin');
-	boton.prop('disabled', true);
-	// var id_productos = 
-	$.ajax({
-		url: 'productos/modal_historial.php',
-		method: 'get',
-		
-		data: { 'id_productos': boton.data('id_productos') }
-		}).done(function (respuesta) {
-		
-		$('#historial').html(respuesta);
-		$('#modal_historial').modal('show');
-		
-		icono.toggleClass('fa-clock fa-spinner fa-spin');
-		boton.prop('disabled', false);
-	});
-}
-
-function buscarCodigo() {
-	var indice = $(this).data("indice");
-	var valor_filtro = $(this).val();
-	var num_rows = buscar(valor_filtro, 'tabla_productos', indice);
-	if (num_rows == 0) {
-		$('#mensaje').html("<div class='alert alert-warning text-center'><strong>No se ha encontrado.</strong></div>");
-		} else {
-		$('#mensaje').html('');
-	}
-}
 
 
-function buscarDescripcion() {
-	var indice = $(this).data("indice");
-	var valor_filtro = $(this).val();
-	var num_rows = buscar(valor_filtro, 'tabla_productos', indice);
-	if (num_rows == 0) {
-	$('#mensaje').html("<div class='alert alert-warning text-center'><strong>No se ha encontrado.</strong></div>");
-	} else {
-	$('#mensaje').html('');
-}
-}
 
-
-$(document).ready(function () {
+$(document).ready( function onLoad() {
 	$("#form_filtros").submit(function () {
 		listaProductos();
 		return false;
@@ -124,7 +9,11 @@ $(document).ready(function () {
 	
 	
 	
-	listaProductos();
+	
+	
+	$("#piezas").keyup(modificarPrecio);
+	$('#costo_mayoreo').keyup(modificarPrecio );
+	$("#unidad_productos").change(cambiarUnidadMedida);
 	
 	$('#btn_alta').click(function () {
 		$('#form_productos')[0].reset();
@@ -135,7 +24,7 @@ $(document).ready(function () {
 	$('#codigo_productos').keyup(buscarRepetidos );
 	
 	
-	
+	listaProductos();
 	
 	//-------ALTA DE PRODUCTOS-----
 	$('#form_productos').submit( guardarProducto);
@@ -289,7 +178,176 @@ $(document).ready(function () {
 
 
 
-function cargarRegistro() {
+function listaProductos() {
+	let tableTemplate;
+	let bgClass;
+	let $boton = $("#form_filtros").find(":submit");
+	let $icono = $boton.find(".fa");
+	
+	$boton.prop("disabled", true)
+	$icono.toggleClass("fa-search fa-spinner fa-spin");
+	
+	
+	$.ajax({
+		url: 'productos/productos_json.php',
+		// url: 'productos/lista_productos.php',
+		
+		data: $("#form_filtros").serializeArray()
+		}).done(function (respuesta) {
+		
+		
+		// return;
+		$.each(respuesta, function (index, value) {
+		bgClass = Number(value.existencia_productos) < Number(value.min_productos) ? "bg-danger" : " ";
+		
+		maximo = value.maximo == null ? '' : value.maximo;
+		
+		tableTemplate += `
+		<tr class="${bgClass}">
+		<td class="text-center">${value.descripcion_productos}</td>
+		<td class="text-center">${value.nombre_departamentos} </td>
+		<td class="text-center">${value.costo_proveedor} </td>
+		<td class="text-center">${value.ganancia_menudeo_porc} </td>
+		<td class="text-center">${value.precio_menudeo} </td>
+		<td class="text-center">${value.precio_mayoreo} </td>                
+		<td class="text-center">${value.min_productos} </td>
+		<td class="text-center">${maximo} </td>
+		<td class="text-center">${value.existencia_productos} </td>                
+		<td class="text-center">
+		<input form='form_imprimir_precios' name="id_productos[]" class="seleccionar" type="checkbox" value="${value.id_productos}">
+		<button class="btn btn-warning btn_editar" data-id_producto="${value.id_productos}">
+		<i class="fa fa-edit"></i>
+		</button>
+		<button class="btn btn-danger btn_eliminar" data-id_producto="${value.id_productos}">
+		<i class="fa fa-trash"></i>
+		</button>
+		<button class="btn btn-success btn_carrito" 
+		data-id_productos="${value.id_productos}"
+		data-descripcion="${value.descripcion_productos}"
+		data-precio="${value.costo_proveedor}"
+		data-unidad="${value.unidad_productos}"
+		>
+		<i class="fa fa-cart-plus"></i>
+		</button>
+		<button class="btn btn-info btn_historial" 
+		data-id_productos="${value.id_productos}"
+		>
+		<i class="fa fa-clock"></i>
+		</button>
+		</td>
+		</tr>  
+		`;
+		
+		});
+		
+		$('#bodyProductos').html(tableTemplate);
+		// $('#bodyProductos').html(respuesta);
+		$("#tabla_productos").stickyTableHeaders();
+		$boton.prop("disabled", false)
+		$icono.toggleClass("fa-search fa-spinner fa-spin");
+		
+		$(".seleccionar").change(contarSeleccionados)
+		
+		$(".buscar_codigo").keyup( buscarCodigo);
+		$(".buscar_descripcion").keyup( buscarDescripcion);
+		$('.btn_eliminar').click( confirmaEliminar);
+		$('.btn_editar').click( cargarProducto);
+		$('.btn_carrito').click(pedirCantidad);
+		$('.btn_historial').click(mostrarHistorial);
+		
+		
+		}).fail(function(xhr, error, ernum){
+		alertify.error("Ocurrio un Error" + errnum);
+		
+	});
+}
+
+function modificarPrecio() {
+	console.log("modificarPrecio()");
+	var costo_mayoreo = Number($("#costo_mayoreo").val());
+	var piezas = Number($('#piezas').val());
+	
+	
+	if (piezas != '') {
+		var costo_pz = costo_mayoreo / piezas;
+		console.log("Costo Pieza: " , costo_pz);
+		
+		$('#costo_proveedor').val(costo_pz.toFixed(2));
+		
+		if (costo_pz != '') {
+			
+			//ganancia menudeo
+			var ganancia_menudeo_porc = Number($('#ganancia_menudeo_porc').val());
+			var ganancia_menudeo_pesos = (ganancia_menudeo_porc * costo_pz) / 100;
+			$('#ganancia_menudeo_pesos').val(ganancia_menudeo_pesos.toFixed(2));
+			
+			//precio mayoreo
+			var precio_menudeo = costo_pz + ganancia_menudeo_pesos;
+			$('#precio_menudeo').val(precio_menudeo.toFixed(2));
+			
+		}
+	}
+}
+
+
+function mostrarHistorial() {
+	// $('#form_productos')[0].reset();
+	var boton = $(this);
+	var icono = boton.find('.fa');
+	icono.toggleClass('fa-clock fa-spinner fa-spin');
+	boton.prop('disabled', true);
+	// var id_productos = 
+	$.ajax({
+		url: 'productos/modal_historial.php',
+		method: 'get',
+		
+		data: { 'id_productos': boton.data('id_productos') }
+		}).done(function (respuesta) {
+		
+		$('#historial').html(respuesta);
+		$('#modal_historial').modal('show');
+		
+		icono.toggleClass('fa-clock fa-spinner fa-spin');
+		boton.prop('disabled', false);
+	});
+}
+
+function buscarCodigo() {
+	var indice = $(this).data("indice");
+	var valor_filtro = $(this).val();
+	var num_rows = buscar(valor_filtro, 'tabla_productos', indice);
+	if (num_rows == 0) {
+		$('#mensaje').html("<div class='alert alert-warning text-center'><strong>No se ha encontrado.</strong></div>");
+		} else {
+		$('#mensaje').html('');
+	}
+}
+
+
+function buscarDescripcion() {
+	var indice = $(this).data("indice");
+	var valor_filtro = $(this).val();
+	var num_rows = buscar(valor_filtro, 'tabla_productos', indice);
+	if (num_rows == 0) {
+		$('#mensaje').html("<div class='alert alert-warning text-center'><strong>No se ha encontrado.</strong></div>");
+		} else {
+		$('#mensaje').html('');
+	}
+}
+
+function cambiarUnidadMedida(){
+	
+	if($("#unidad_productos").val() == "PZA"){
+		$(".unidad_medida").text("Pieza")
+	}
+	else{
+		
+		$(".unidad_medida").text("KG")
+	}
+	
+}
+
+function cargarProducto() {
 	$('#form_productos')[0].reset();
 	var boton = $(this);
 	var icono = boton.find('.fa');
@@ -307,11 +365,13 @@ function cargarRegistro() {
 				
 				$('#input_granel').html('');
 				$.each(respuesta["fila"], function (name, value) {
-					
+					$("#form_productos").find("#ultimo_" + name).val(value);
 					$("#form_productos").find("#" + name).val(value);
 				});
 				
 			});
+			
+			cambiarUnidadMedida();
 			$('h3.modal-title').text('Editar Producto');
 			$('#modal_productos').modal('show');
 		}
@@ -358,7 +418,7 @@ function guardarProducto(event) {
 	var formulario = $(this).serializeArray();
 	console.log("formulario: ", formulario)
 	$.ajax({
-		url: 'control/guardar_producto.php',
+		url: 'productos/guardar.php',
 		dataType: 'JSON',
 		method: 'POST',
 		data: formulario

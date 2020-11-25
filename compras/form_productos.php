@@ -23,12 +23,12 @@
 								<input placeholder="Nombre del producto" required class="form-control" type="text" name="descripcion_productos" id="descripcion_productos">
 							</div>
 							<div class="form-group">
-								<label for="">Sustancia:</label>
-								<input  class="form-control" type="text" name="sustancia" id="sustancia">
-							</div>
-							<div class="form-group">
-								<label for="">Laboratorio:</label>
-								<input  class="form-control" type="text" name="laboratorio" id="laboratorio">
+								<label required for="unidad_productos">Unidad de Medida:</label>
+								<select  class="form-control" id="unidad_productos" name="unidad_productos">
+									<option value="">Elije...</option>
+									<option value="PZA">Pieza</option>
+									<option value="KG">A Granel</option>
+								</select>
 							</div>
 							<div class="form-group">
 								<label required for="id_departamentos">Departamento:</label>
@@ -46,12 +46,14 @@
 									</div>
 									<div class="form-group ">
 										
-										<label for="piezas">Piezas por Paquete:</label>
+										<label for="piezas"><span class="unidad_medida">Pieza</span>s por Paquete:</label>
 										<input placeholder="" readonly  type="number"  step="any" class="form-control" id="ultimo_piezas" name="ultimo_piezas">
 									</div>
 									<div class="form-group ">
 										
-										<label for="costo_proveedor">Costo x Pieza:</label>
+										<label for="costo_proveedor">
+											Costo x <span class="unidad_medida">Pieza</span>:
+										</label>
 										<input placeholder="" readonly type="number"  step="any" class="form-control" id="ultimo_costo_proveedor" name="ultimo_costo_proveedor">
 										
 									</div>
@@ -79,14 +81,14 @@
 									</div>
 									<div class="form-group ">
 										
-										<label for="piezas">Piezas por Paquete:</label>
+										<label for="piezas"><span class="unidad_medida">Pieza</span>s por Paquete:</label>
 										<input placeholder=""  type="number"  step="any" class="form-control" id="piezas" name="piezas">
 										
 									</div>
 									<div class="form-group ">
 										
 										
-										<label for="costo_proveedor">Costo x Pieza:</label>
+										<label for="costo_proveedor">Costo x <span class="unidad_medida">Pieza</span>:</label>
 										<input placeholder=""  type="number"  step="any" class="form-control" id="costo_proveedor" name="costo_proveedor">
 										
 									</div>
@@ -109,12 +111,17 @@
 								</div> 
 							</div>
 							<div class="form-group ">
-								<label for="existencia_productos">Existencia en Piezas:</label>
+								<label for="existencia_productos">Existencia:</label>
 								<input hidden type="number" min="0" step="any" class="form-control" id="existencia_productos" name="existencia_productos">
 							</div>
 							<div class="form-group ">
 								<label for="min_productos">Minimo:</label>
 								<input placeholder="" type="number" min="0" class="form-control" id="min_productos" name="min_productos">
+							</div>
+							
+							<div class="form-group ">
+								<label for="maximo">Máximo:</label>
+								<input placeholder="" type="number"  class="form-control" id="maximo" name="maximo">
 							</div>
 							
 							

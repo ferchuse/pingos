@@ -72,6 +72,7 @@ $(document).ready(function(){
 	}
 	
 	$("#piezas").keyup(modificarPrecio);
+	$("#unidad_productos").change(cambiarUnidadMedida);
 	
 	
 	// $('#form_granel').submit(agregarGranel);
@@ -435,6 +436,8 @@ function cargarRegistro() {
 				});
 				
 			});
+			cambiarUnidadMedida();
+			
 			$('h3.modal-title').text('Editar Producto');
 			$('#modal_productos').modal('show');
 		}
@@ -505,6 +508,18 @@ function buscar(filtro,table_id,indice) {
 	}
 	var num_rows = $(table).find('tbody tr:visible').length; 
 	return num_rows;
+}
+
+function cambiarUnidadMedida(){
+	
+	if($("#unidad_productos").val() == "PZA"){
+		$(".unidad_medida").text("Pieza")
+	}
+	else{
+		
+		$(".unidad_medida").text("KG")
+	}
+	
 }
 
 function guardarProducto(event) {

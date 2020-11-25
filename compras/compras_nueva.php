@@ -151,7 +151,7 @@
 			
 		</div>
 		<?php include('../scripts_carpetas.php'); ?>
-		<?php include('modal_productos.php'); ?>
+		<?php include('form_productos.php'); ?>
 		<?php include('../forms/modal_venta.php'); ?>
 		<?php include('../forms/modal_granel.php'); ?>
 		<script src="compras.js?v=<?= date("YmdHis")?>"></script>

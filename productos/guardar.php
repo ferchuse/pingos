@@ -17,6 +17,7 @@
 	precio_menudeo = '{$_POST["precio_menudeo"]}',
 	ganancia_menudeo_porc = '{$_POST["ganancia_menudeo_porc"]}',
 	min_productos = '{$_POST["min_productos"]}',
+	maximo = '{$_POST["maximo"]}',
 	id_departamentos = '{$_POST["id_departamentos"]}',
 	existencia_productos = '{$_POST["existencia_productos"]}'
 	
@@ -33,6 +34,7 @@
 	precio_menudeo = '{$_POST["precio_menudeo"]}',
 	ganancia_menudeo_porc = '{$_POST["ganancia_menudeo_porc"]}',
 	min_productos = '{$_POST["min_productos"]}',
+	maximo = '{$_POST["maximo"]}',
 	id_departamentos = '{$_POST["id_departamentos"]}',
 	existencia_productos = '{$_POST["existencia_productos"]}'
 	
