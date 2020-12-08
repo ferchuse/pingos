@@ -2,8 +2,11 @@
 	
 	
 	$consulta_compras = "SELECT * FROM compras LEFT JOIN proveedores USING(id_proveedores) WHERE estatus_compras = 'PENDIENTE'";
-	$result_compras = mysqli_query($link, $consulta_compras);
-	$select = "<select class='form-control' id='id_compras' name='id_compras'";
+	$result_compras = mysqli_query($link, $consulta_compras) or die("Error en $consulta_compras".mysqli_error($link));
+	
+	
+	
+	$select = "<select class='form-control' id='id_compras' name='id_compras'>";
 	
 	
 	$select .= "<option value=''>Seleccione...</option>";
@@ -11,7 +14,7 @@
 		
 		
 		
-		$select.="<option value='{$fila["id_compras"]}>{$fila["id_compras"]} -  {$fila["nombre_proveedores"]}</option>";
+		$select.="<option value='{$fila["id_compras"]}'>{$fila["id_compras"]} -  {$fila["nombre_proveedores"]}</option>";
 		
 	}
 	
