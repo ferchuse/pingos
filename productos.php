@@ -59,6 +59,9 @@
 						<i class="fa fa-print"></i> Imprimir Precios  
 						(<span id="cant_seleccionados">0</span>)
 					</button>
+					<a href="./productos/export_excel.php" class="btn btn-primary pull-right" id="btn_alta">
+						<i class="fa fa-file-excel"></i> Exportar
+					</a>
 					
 				</div>
 			</div>

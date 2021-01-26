@@ -11,7 +11,7 @@ function Conectarse()
 		$pass="UAEH@2018";
 	}
 	else{
-		$db="abarrotes";
+		$db="pingos";
 		$usuario="sistemas";
 		$pass="Glifom3dia";
 		$set_local = "SET time_zone = '-05:00'";
