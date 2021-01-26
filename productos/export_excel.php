@@ -67,8 +67,6 @@
 	productos
 	LEFT JOIN departamentos USING(id_departamentos)
 	
-	WHERE 
-	1
 	";
 	
 	
@@ -99,11 +97,12 @@
 	"Costo_Compra",
 	"Precio_Publico",
 	"Precio_Mayoreo",
+	"Existencia",
 	"Maximo",
 	"Minimo"
 	]
 	];
-	// setlocale(LC_ALL, "es_MX.utf8");
+	setlocale(LC_ALL, "es_MX.utf8");
 	
 	foreach($arrResult as $i=> $fila){
 		// $semaforo = $producto["existencia"] < $producto["min_productos"] ? "bg-danger": "";
@@ -112,15 +111,21 @@
 		$export[] = [
 		
 		$fila["id_productos"], 
-		$fila["codigo_productos"], 
-		// $fila["descripcion_productos"],
+		
+		// normalizeChars($fila["codigo_productos"]),
 		// normalizeChars($fila["descripcion_productos"]),
+		// normalizeChars($fila["nombre_departamentos"]),
+		
+		iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $fila["codigo_productos"]),
 		iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $fila["descripcion_productos"]),
 		iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $fila["nombre_departamentos"]),
 		// $fila["nombre_departamentos"], 
 		$fila["costo_proveedor"], 
 		$fila["precio_menudeo"], 
-		$fila["precio_mayoreo"]
+		$fila["precio_mayoreo"],
+		$fila["existencia"],
+		$fila["maximo"],
+		$fila["min_productos"]
 		
 		
 		// iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $fila["nombre_sucursal"]) , 
@@ -133,9 +138,11 @@
 	// print_r($export);
 	// print_r("</pre>");
 	
-	$xlsx = SimpleXLSXGen::fromArray( $export );
-	// $xlsx->saveAs('productos.xlsx');
+	$xlsx = SimpleXLSXGen::fromArray(($export)) ;
 	$xlsx->downloadAs("Productos Dulceria Pingos ".date("d-m-Y").".xlsx");
+	
+	
+	// $xlsx->saveAs('productos.xlsx');
 	// $xlsx->download();
 	
 	// SimpleXLSXGen::download() or SimpleXSLSXGen::downloadAs('table.xlsx');
