@@ -7,3 +7,4 @@
 <script src="../lib/jquery.base64.js"></script>
 <script src="../lib/tableExport.js"></script>
 <script src="../js/menu.js"></script>
+<script>$.ajaxSetup({ cache: false });</script>
